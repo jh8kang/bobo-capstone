@@ -1,0 +1,51 @@
+@import '../../partials/global';
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0px 15px 0px;
+    border-top: 1px solid #e5e5e5;
+    z-index: 1;
+    background-color: white;
+
+}
+
+.navBox {
+
+
+}
+
+.icon {
+    &__home {
+        background-image: url('../../assets/icons/home.svg');
+        width: 25px;
+        height: 25px;
+        background-size: cover;
+    }
+    &__star {
+        background-image: url('../../assets/icons/star.svg');
+        width: 20px;
+        height: 20px;
+        background-size: cover;
+    }
+    &__profile {
+        background-image: url('../../assets/icons/profile.png');
+        width: 25px;
+        height: 25px;
+        background-size: cover;
+
+    }
+    &__qr {
+        background-image: url('../../assets/icons/qrcode.svg');
+        width: 20px;
+        height: 20px;
+        background-size: cover;
+
+    }
+
+}

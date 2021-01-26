@@ -1,49 +1,48 @@
 import React, {Component} from 'react';
 import './SignUpPage.scss';
-import {auth} from '../../../firebase';
+import {auth, db} from '../../../firebase';
 
 class SignUpPage extends Component {
-    constructor() {
-        super();
-        this.state = {
-            // username: "",
-            // password: "",
-            error: "",
-        }
-        this.signup = this.signup.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+    state = {
+        error:"",
+        useruid: "",
     }
-
-    signup(e)  {
+    signup = (e)=>  {
         e.preventDefault();
-        auth.createUserWithEmailAndPassword(e.target.username, e.target.password)
+        auth.createUserWithEmailAndPassword(e.target.username.value, e.target.password.value)
+        .then(user=> {
+            this.setState({
+                useruid: user.user.uid
+            })
+            var userRef = db.collection("usertype").add({
+                name: "",
+                location: "",
+                uid: user.user.uid,
+                stores: [],
+                type: "collector",
+            })
+        })
         .catch(err=>{
-            console.log(err.message);
             this.setState({
                 error: err.message
             })
         })
-        if (!this.state.error) {
-            this.props.history.push("/");
-        }
-    }
 
-    handleChange(e) {
-        e.preventDefault();
-        this.setState({[e.target.name]: e.target.value})
+
+
     }
 
     render() {
+
         return (
             <div>
                 <h1>Sign Up</h1>
-                <p>{this.state.error}</p>
-                <form>
+                <form onSubmit={this.signup}>
                     <label htmlFor="username">email</label>
-                    <input onChange={this.handleChange} type="email" id="username" name="username"/>
+                    <input type="email" id="username" name="username"/>
                     <label htmlFor="name">password</label>
-                    <input onChange={this.handleChange}type="password" id="password" name="password"/>
-                    <button onClick={this.signup}>Sign up</button>
+                    <input type="password" id="password" name="password"/>
+                    <button >Sign up</button>
                 </form>
             </div>
         )

@@ -1,0 +1,35 @@
+@import '../../partials/global';
+
+.icon {
+    &__search {
+        background-image: url('../../assets/icons/search.gif');
+        width: 18px;
+        height: 18px;
+        background-size: cover;
+        position: absolute;
+        top: 17px;
+        left: 15px;
+        
+    }
+}
+
+.search {
+    position: relative;
+    padding: 10px;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid $grey;
+    position: fixed;
+    &__input {
+        padding: 8px 30px 8px 30px;
+        width: 100%;
+        border: 1px solid $grey;
+        border-radius: 5px;
+        outline: none;
+        &:focus {
+            border: 1px solid #9f9aa4;
+
+        }
+
+    }
+}

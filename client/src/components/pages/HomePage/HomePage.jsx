@@ -1,16 +1,20 @@
 import React, {Component} from 'react';
-// import {auth} from '../../../firebase';
 import {db, auth} from '../../../firebase';
+import './HomePage.scss';
+import Header from '../../Header/Header';
+import Footer from '../../Footer/Footer';
+import SearchBar from '../../SearchBar/SearchBar';
+import ScrollHero from '../../ScrollHero/ScrollHero';
+import StoreList from '../../StoreList/StoreList';
+import {Route} from 'react-router-dom';
+import QrCodePage from '../../pages/QrCodePage/QrCodePage';
 
 class HomePage extends Component {
     constructor() {
         super();
         this.state = {
           stores: null,
-          user: {},
-          type: "",
         }
-        this.logout = this.logout.bind(this)
       }
 
       componentDidMount() {
@@ -28,28 +32,23 @@ class HomePage extends Component {
             })
           })
           .catch(err=> console.log(err))
-    
-          this.authListener() 
       }
 
-      authListener() {
-        auth.onAuthStateChanged((user)=>{
-            if(user) {
-                this.setState({user: user});
-            } else {
-                this.setState({user: null})
-            }
-        }) 
-    }
      
-    logout() {
+    logout =()=> {
         auth.signOut();
     }
 
     render() {
         return (
-            <div>
-                <button onClick={this.logout} >logout</button>
+          <div className="home">
+              <SearchBar/>
+              <ScrollHero/>
+              <button onClick={this.logout} >logout</button>
+              <StoreList/>
+
+              <Footer type="home"/>
+
                 
             </div>
         )

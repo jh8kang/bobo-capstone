@@ -1,0 +1,22 @@
+@import '../../../partials/global';
+
+.landing {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20%;
+}
+
+.logo {
+    font-size: 50px;
+    color: #B5C9C3;
+    margin-bottom: 30%;
+
+}
+
+.buttons {
+    display: flex;
+}

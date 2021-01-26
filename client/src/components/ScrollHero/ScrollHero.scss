@@ -1,0 +1,34 @@
+@import '../../partials/global';
+
+.hero {
+    border-bottom: 1px solid $grey;
+    padding: 10px;
+    // &__title {
+    //     padding: 10px 0px 0px 10px;
+    // }
+
+}
+.cards {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+}
+
+.card {
+    padding: 10px 10px 0px 10px;
+    &__imgBox {
+        overflow:hidden;
+        min-width: 100px;
+        min-height: 100px;
+    }
+    &__img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+}
+
