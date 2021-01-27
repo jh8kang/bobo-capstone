@@ -4,6 +4,7 @@ import './LoginOrHome.scss';
 import HomePage from '../pages/HomePage/HomePage';
 import LoginOrSignup from '../LoginOrSignup/LoginOrSignup';
 import QrCodePage from '../pages/QrCodePage/QrCodePage';
+import UserLoginPage from '../pages/UserLoginPage/UserLoginPage'
 import {Route, Redirect} from 'react-router-dom';
 
 class LoginPage extends Component {
@@ -52,7 +53,7 @@ class LoginPage extends Component {
         if (this.state.user && (this.state.type === 'collector')) {
             return <Redirect to="/home"/>
         } else {
-            return <LoginOrSignup typeHandler={this.typeHandler}/>
+            return <UserLoginPage typeHandler={this.typeHandler}/>
         }
     }
 }

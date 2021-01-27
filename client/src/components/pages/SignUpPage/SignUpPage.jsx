@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './SignUpPage.scss';
 import {auth, db} from '../../../firebase';
+import {Redirect} from 'react-router-dom';
 
 class SignUpPage extends Component {
     state = {
@@ -28,12 +29,13 @@ class SignUpPage extends Component {
             })
         })
 
-
-
     }
 
     render() {
-
+        if (this.state.useruid) {
+            return <Redirect to="/login"/>
+        }
+    
         return (
             <div>
                 <h1>Sign Up</h1>

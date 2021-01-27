@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {auth} from '../../../firebase';
+import {Link} from 'react-router-dom';
 
 class UserLoginPage extends Component {
     state ={
@@ -10,6 +11,7 @@ class UserLoginPage extends Component {
         e.preventDefault();
         auth.signInWithEmailAndPassword(e.target.username.value, e.target.password.value)
         .then(user=> {
+            console.log(user)
             this.props.typeHandler(user.user);
             // sessionStorage.setItem('username', e.target.username.value);
             // sessionStorage.setItem('password', e.target.password.value);
@@ -21,6 +23,7 @@ class UserLoginPage extends Component {
             })
         })
     }
+
 
     render() {
         return (
@@ -34,7 +37,10 @@ class UserLoginPage extends Component {
                     <input  type="password" id="password" name="password"/>
                     <button type="submit">Login</button>
                 </form>
-                    <button onClick={this.props.signupRouter}>Sign up</button>
+                <Link to='/signup'>
+                    <button>Sign up</button>
+                </Link>
+                
             </div>
         )
     }
