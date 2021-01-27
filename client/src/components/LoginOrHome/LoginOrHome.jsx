@@ -40,8 +40,10 @@ class LoginPage extends Component {
         auth.onAuthStateChanged((user)=>{
             if(user) {
                 this.setState({user: user});
+                console.log("user is logged in")
             } else {
                 this.setState({user: null})
+                console.log("user is out")
             }
         }) 
     }

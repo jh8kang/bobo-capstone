@@ -35,8 +35,9 @@ class HomePage extends Component {
       }
 
      
-    logout =()=> {
+      logout =()=> {
         auth.signOut();
+        this.props.history.push('/login')
     }
 
     render() {

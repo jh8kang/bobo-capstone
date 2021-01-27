@@ -13,7 +13,7 @@ class LandingPage extends Component {
                     <Link to="/storelogin">
                         <button value="store" >Store Owner</button>
                     </Link>
-                    <Link to="/home">
+                    <Link to="/login">
                         <button value="collector">Point Collector</button>
                     </Link>
                 </div>
