@@ -1,1 +1,8 @@
 @import '../../../partials/global';
+
+.signupForm {
+    display: flex;
+    flex-direction: column;
+    // width: 90%;
+    align-items: center;
+}

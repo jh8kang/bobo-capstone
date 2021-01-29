@@ -7,6 +7,7 @@ class SignUpPage extends Component {
     state = {
         error:"",
         useruid: "",
+        image: null,
     }
     signup = (e)=>  {
         e.preventDefault();
@@ -31,7 +32,17 @@ class SignUpPage extends Component {
 
     }
 
+    onImageChange = event => {
+        if (event.target.files && event.target.files[0]) {
+          let img = event.target.files[0];
+          this.setState({
+            image: URL.createObjectURL(img)
+          });
+        }
+      };
+
     render() {
+        console.log(this.state.image)
         if (this.state.useruid) {
             return <Redirect to="/login"/>
         }
@@ -39,13 +50,33 @@ class SignUpPage extends Component {
         return (
             <div>
                 <h1>Sign Up</h1>
-                <form onSubmit={this.signup}>
-                    <label htmlFor="username">email</label>
-                    <input type="email" id="username" name="username"/>
-                    <label htmlFor="name">password</label>
-                    <input type="password" id="password" name="password"/>
+                <form onSubmit={this.signup} className="signupForm">
+                    <div>
+                        <label htmlFor="name">name</label>
+                        <input type="text" id="name" name="name"/>
+                    </div>
+                    <div>
+                        <label htmlFor="username">email</label>
+                        <input type="email" id="username" name="username"/>
+                    </div>
+                    <div>
+                        <label htmlFor="password">password</label>
+                        <input type="password" id="password" name="password"/>
+                    </div>
+                    <div>
+                        <label htmlFor="location">location</label>
+                        <select>
+                            <option value="vancouver">Vancouver</option>
+                            <option value="toronto">Toronto</option>
+                            <option value="toronto">Calgary</option>
+                        </select>
+                    </div>
                     <button >Sign up</button>
                 </form>
+                {/* <div className="">
+                    <input type="file" name="myImage" onChange={this.onImageChange} />
+                </div>
+                <img src={`${this.state.image}`}/> */}
             </div>
         )
 
