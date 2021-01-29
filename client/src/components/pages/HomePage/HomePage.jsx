@@ -27,20 +27,20 @@ function HomePage()  {
     })
     .catch(err=> console.log(err))
   }, [searchStore])
-
-
-
+  
 
     let searchHandler = (e) => {
       e.preventDefault();
+      console.log(typeof e.target.search.value)
+
       stores.map(store => {
         if (store.name.toLowerCase() === e.target.search.value.toLowerCase()) {
           setSearchStore(store);
+        } else if (e.target.search.value == "") {
+          setSearchStore(null);
         }
       })
-
     }
-
 
     return (
       <div className="home">
