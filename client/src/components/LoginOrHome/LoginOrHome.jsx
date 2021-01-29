@@ -52,6 +52,9 @@ class LoginPage extends Component {
     render() {
         if (this.state.user && (this.state.type === 'collector')) {
             return <Redirect to="/home"/>
+        } else if (this.state.user &&(this.state.type === 'storekeeper')) {
+            return <Redirect to='/home'/>
+
         } else {
             return <UserLoginPage typeHandler={this.typeHandler}/>
         }

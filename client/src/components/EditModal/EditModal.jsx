@@ -16,10 +16,10 @@ export default function EditModal({show, userInfo, updateUserInfo, hideEdit}) {
                         <label htmlFor="name" >name</label>
                         <input className="modal-main__input" type="text" id="name" name="name" placeholder={userInfo.name}/>
                     </div>
-                    <div>
+                    {/* <div>
                         <label htmlFor="username">email</label>
                         <input className="modal-main__input" type="email" id="username" name="username" placeholder={userInfo.username}/>
-                    </div>
+                    </div> */}
                     <div>
                         <label htmlFor="location">location</label>
                         <select id="location" name="location">

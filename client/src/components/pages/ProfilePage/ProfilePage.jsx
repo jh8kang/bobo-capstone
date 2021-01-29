@@ -7,7 +7,7 @@ import {db, auth} from '../../../firebase';
 import firebase from 'firebase';
 import EditModal from '../../EditModal/EditModal';
 
-export default function ProfilePage() {
+export default function ProfilePage(props) {
     const [userInfo, setUserInfo] = useState({});
     const [storeCount, setStoreCount] = useState(0);
     const [pageLoader, setPageLoad] = useState(false);
@@ -41,7 +41,7 @@ export default function ProfilePage() {
                     let userInfo = db.collection("usertype").doc(`${doc.id}`)
                     userInfo.update({
                         name: e.target.name.value,
-                        username: e.target.username.value,
+                        // username: e.target.username.value,
                         location: e.target.location.value
                     })
                 }
@@ -60,6 +60,11 @@ export default function ProfilePage() {
         setShow(true)
     }
 
+    let logout =()=> {
+        auth.signOut();
+        props.history.push('/')
+      }
+
   
 
     return (
@@ -74,6 +79,7 @@ export default function ProfilePage() {
                 <p>location: <span className="store-count">{userInfo.location}</span> </p>
                 <p>email: <span className="store-count">{userInfo.username}</span> </p>
             </div>
+            <button onClick={logout}>logout</button>
             <EditModal show={show} userInfo={userInfo} updateUserInfo={updateUserInfo} hideEdit={hideEdit}/>
             <Footer/>
         </div>

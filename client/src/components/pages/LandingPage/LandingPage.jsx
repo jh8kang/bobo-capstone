@@ -10,7 +10,7 @@ class LandingPage extends Component {
             <div className="landing">
                 <p className="logo">BOBO</p>
                 <div className="buttons">
-                    <Link to="/storelogin">
+                    <Link to="/login">
                         <button value="store" >Store Owner</button>
                     </Link>
                     <Link to="/login">

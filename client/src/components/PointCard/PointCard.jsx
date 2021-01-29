@@ -23,8 +23,8 @@ export default function PointCard(props) {
     return (
         <div className="pointcard">
             <h1>{store.name}</h1>
-            <p>{store.points}</p>
-            <p>{store.pointmax}</p>
+            {/* <p>{store.points}</p>
+            <p>{store.pointmax}</p> */}
             <div>
                 {userPoints.map(point=> <img className="pointcard__star" src={yellowStar}/>)}
                 {restOfPoints.map(point=> <img className="pointcard__star" src={whiteStar}/>)}

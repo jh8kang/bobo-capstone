@@ -22,18 +22,13 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <Switch>
-            {/* <Route path="/" exact component={LoginPage}/> */}
-            {/* <Route path="/" component={this.state.user ? (HomePage):(LoginPage)}/> */}
-            <Route path="/" exact component={()=> <LandingPage/>}/>
-            <Route path="/login" exact component={(routerProps)=><LoginOrHome {...routerProps}/>}/>
-            <Route path="/signup" exact component={(routerProps)=><SignUpPage {...routerProps}/>}/>
-            <Route path="/home" exact component={(routerProps)=><HomePage {...routerProps}/>}/>
-            <Route path="/points" component={PointsPage}/>
-            <Route path="/storehome" component={(routerProps)=><StoreLoginPage {...routerProps}/>}/>
-            <Route path="/user/profile" exact component={ProfilePage}/>
-            <Route path="/home/user/qr" component={QrCodePage}/>
-            {/* <Route path="/home" component={HomePage}/> */}
-            {/* <Route path="/store" component={StoreHomePage}/> */}
+              <Route path="/" exact component={()=> <LandingPage/>}/>
+              <Route path="/login" exact component={(routerProps)=><LoginOrHome {...routerProps}/>}/>
+              <Route path="/signup" exact component={(routerProps)=><SignUpPage {...routerProps}/>}/>
+              <Route path="/home" exact component={(routerProps)=><HomePage {...routerProps}/>}/>
+              <Route path="/points" component={PointsPage}/>
+              <Route path="/user/profile" exact component={(routerProps)=> <ProfilePage {...routerProps}/>}/>
+              <Route path="/home/user/qr" component={QrCodePage}/>
           </Switch>
         </BrowserRouter>
 
