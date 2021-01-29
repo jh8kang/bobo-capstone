@@ -1,44 +1,5 @@
 @import '../../partials/global';
 
 .storeList {
-    margin-bottom: 50px;
-}
-
-.item {
-    padding: 10px;
-    display: flex;
-    &__imgBox {
-        // width: 100px;
-        // height: 100px;
-        overflow:hidden;
-        min-width: 100px;
-        min-height: 100px;
-    }
-    &__img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 5px;
-    }
-    &__info {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        &__storename {
-            font-size: 12px;
-        }
-        &__des {
-            font-size: 10px;
-            color: #cecece;
-        }
-        &__btn {
-            width: fit-content;
-            background-color: transparent;
-            border: 1px solid grey;
-            font-size: 11px;
-            margin-top: 5px;
-            border-radius: 5px;
-            padding: 2px;
-        }
-    }
+    padding-bottom: 60px;
 }

@@ -11,46 +11,50 @@ import QrCodePage from '../../pages/QrCodePage/QrCodePage';
 
 class HomePage extends Component {
     constructor() {
-        super();
-        this.state = {
-          stores: null,
-        }
+      super();
+      this.state = {
+        stores: null,
       }
+    }
 
-      componentDidMount() {
-        console.log("mounted")
-        db.collection('stores')
-          .get()
-          .then(snapshot=> {
-            const stores = []
-            snapshot.forEach(doc=> {
-              const data = doc.data()
-              stores.push(data)
-            })
-            this.setState({
-              stores: stores
-            })
+    componentDidMount() {
+      console.log("mounted")
+      db.collection('stores')
+        .get()
+        .then(snapshot=> {
+          const stores = []
+          snapshot.forEach(doc=> {
+            const data = doc.data()
+            data.uid = doc.id
+            stores.push(data)
           })
-          .catch(err=> console.log(err))
-      }
+          this.setState({
+            stores: stores
+          })
+        })
+        .catch(err=> console.log(err))
+    }
 
-     
-      logout =()=> {
-        auth.signOut();
-        this.props.history.push('/login')
+    logout =()=> {
+      auth.signOut();
+      this.props.history.push('/login')
+    }
+
+    searchHandler = (e) => {
+      e.preventDefault();
+      console.log(e)
+
+
     }
 
     render() {
         return (
           <div className="home">
-              <SearchBar/>
+              <SearchBar searchHandler={this.searchHandler}/>
               <ScrollHero/>
               <button onClick={this.logout} >logout</button>
-              <StoreList/>
-
+              <StoreList stores={this.state.stores}/>
               <Footer type="home"/>
-
-                
             </div>
         )
     }

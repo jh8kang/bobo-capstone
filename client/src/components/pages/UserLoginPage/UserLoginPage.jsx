@@ -40,7 +40,6 @@ class UserLoginPage extends Component {
                 <Link to='/signup'>
                     <button>Sign up</button>
                 </Link>
-                
             </div>
         )
     }
