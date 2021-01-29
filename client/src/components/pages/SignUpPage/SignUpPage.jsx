@@ -17,8 +17,9 @@ class SignUpPage extends Component {
                 useruid: user.user.uid
             })
             var userRef = db.collection("usertype").add({
-                name: "",
-                location: "",
+                name: e.target.name.value,
+                username: e.target.username.value,
+                location:e.target.location.value,
                 uid: user.user.uid,
                 stores: [],
                 type: "collector",
@@ -42,7 +43,6 @@ class SignUpPage extends Component {
       };
 
     render() {
-        console.log(this.state.image)
         if (this.state.useruid) {
             return <Redirect to="/login"/>
         }
@@ -65,7 +65,7 @@ class SignUpPage extends Component {
                     </div>
                     <div>
                         <label htmlFor="location">location</label>
-                        <select>
+                        <select id="location" name="location">
                             <option value="vancouver">Vancouver</option>
                             <option value="toronto">Toronto</option>
                             <option value="toronto">Calgary</option>
