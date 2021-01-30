@@ -22,8 +22,8 @@ class LoginPage extends Component {
     }
     
     typeHandler = (e)=> {
-        console.log("working")
-        console.log(e)
+        // console.log("working")
+        // console.log(e)
         db.collection('usertype')
             .get()
             .then(snapshot=> {

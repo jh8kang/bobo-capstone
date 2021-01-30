@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './StoreHomePage.scss';
 import FooterStore from '../../FooterStore/FooterStore';
+import StoreHero from '../../StoreHero/StoreHero';
 
 export default function StoreHomePage() {
     return (
         <div>
-            <p>storehomepage</p>
+            
+            <StoreHero />
             <FooterStore/>
             
         </div>

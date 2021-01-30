@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import './StoreSignupPage.scss';
 import {auth, db} from '../../../firebase';
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
+
 
 export default function StoreSignupPage() {
     let [useruid, setUserUid] = useState("")
