@@ -30,17 +30,16 @@ class SignUpPage extends Component {
                 error: err.message
             })
         })
-
     }
 
-    onImageChange = event => {
-        if (event.target.files && event.target.files[0]) {
-          let img = event.target.files[0];
-          this.setState({
-            image: URL.createObjectURL(img)
-          });
-        }
-      };
+    // onImageChange = event => {
+    //     if (event.target.files && event.target.files[0]) {
+    //       let img = event.target.files[0];
+    //       this.setState({
+    //         image: URL.createObjectURL(img)
+    //       });
+    //     }
+    //   };
 
     render() {
         if (this.state.useruid) {
@@ -73,10 +72,6 @@ class SignUpPage extends Component {
                     </div>
                     <button >Sign up</button>
                 </form>
-                {/* <div className="">
-                    <input type="file" name="myImage" onChange={this.onImageChange} />
-                </div>
-                <img src={`${this.state.image}`}/> */}
             </div>
         )
 

@@ -11,7 +11,7 @@ class UserLoginPage extends Component {
         e.preventDefault();
         auth.signInWithEmailAndPassword(e.target.username.value, e.target.password.value)
         .then(user=> {
-            console.log(user)
+            // console.log(user)
             this.props.typeHandler(user.user);
             // sessionStorage.setItem('username', e.target.username.value);
             // sessionStorage.setItem('password', e.target.password.value);
@@ -38,7 +38,11 @@ class UserLoginPage extends Component {
                     <button type="submit">Login</button>
                 </form>
                 <Link to='/signup'>
-                    <button>Sign up</button>
+                    <a>Sign up as a point collector</a>
+                </Link>
+                <br></br>
+                <Link to='/signup/store'>
+                    <a>Register your store</a>
                 </Link>
             </div>
         )

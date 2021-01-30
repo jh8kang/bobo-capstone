@@ -22,7 +22,22 @@ class LoginPage extends Component {
     }
     
     typeHandler = (e)=> {
+        console.log("working")
+        console.log(e)
         db.collection('usertype')
+            .get()
+            .then(snapshot=> {
+                snapshot.forEach(doc=> {
+                    if (doc.data().uid == e.uid) {
+                        console.log(doc.data().type)
+                        this.setState({
+                            type: doc.data().type
+                        })
+                    }
+                })
+            })
+            .catch(err=> console.log(err))
+        db.collection('stores')
             .get()
             .then(snapshot=> {
                 snapshot.forEach(doc=> {
@@ -53,7 +68,7 @@ class LoginPage extends Component {
         if (this.state.user && (this.state.type === 'collector')) {
             return <Redirect to="/home"/>
         } else if (this.state.user &&(this.state.type === 'storekeeper')) {
-            return <Redirect to='/home'/>
+            return <Redirect to='/home/store'/>
 
         } else {
             return <UserLoginPage typeHandler={this.typeHandler}/>
