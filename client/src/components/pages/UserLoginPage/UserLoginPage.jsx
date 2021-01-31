@@ -38,11 +38,11 @@ class UserLoginPage extends Component {
                     <button type="submit">Login</button>
                 </form>
                 <Link to='/signup'>
-                    <a>Sign up as a point collector</a>
+                    <p>Sign up as a point collector</p>
                 </Link>
                 <br></br>
                 <Link to='/signup/store'>
-                    <a>Register your store</a>
+                    <p>Register your store</p>
                 </Link>
             </div>
         )

@@ -6,7 +6,6 @@ import StoreHero from '../../StoreHero/StoreHero';
 export default function StoreHomePage() {
     return (
         <div>
-            
             <StoreHero />
             <FooterStore/>
             

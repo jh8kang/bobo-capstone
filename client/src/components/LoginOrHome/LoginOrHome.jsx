@@ -42,7 +42,6 @@ class LoginPage extends Component {
             .then(snapshot=> {
                 snapshot.forEach(doc=> {
                     if (doc.data().uid == e.uid) {
-                        console.log(doc.data().type)
                         this.setState({
                             type: doc.data().type
                         })

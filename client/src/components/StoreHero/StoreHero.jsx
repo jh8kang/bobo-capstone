@@ -18,12 +18,12 @@ export default function StoreHero(props) {
         .catch(err=> console.log(err))
     }, [])
 
-    if (storeInfo.stores) {
+    if (storeInfo.users) {
         return (
             <div className="store-hero">
                 <p className="store-hero__header">Logged in as {storeInfo.username}</p>
                 <p className="store-hero__name">{storeInfo.name}</p>
-                <p className="store-hero__collector-count">{storeInfo.stores.length} collectors </p>
+                <p className="store-hero__collector-count">{storeInfo.users.length} collectors </p>
             </div>
         )
     } else {

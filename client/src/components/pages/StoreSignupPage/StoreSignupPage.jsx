@@ -19,14 +19,11 @@ export default function StoreSignupPage() {
                 username: e.target.username.value,
                 pointmax: e.target.pointmax.value,
                 location:e.target.location.value,
-                stores: [],
+                users: [],
                 type: "storekeeper",
             })
         })
         .catch(err=>{
-            // this.setState({
-            //     error: err.message
-            // })
             console.log(err)
         })
 

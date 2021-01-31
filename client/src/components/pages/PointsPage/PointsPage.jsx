@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Component} from 'react';
 import './PointsPage.scss';
 import Footer from '../../Footer/Footer';
 import PointCard from '../../PointCard/PointCard';
@@ -6,13 +6,11 @@ import {auth, db} from '../../../firebase';
 import {v4 as uuid} from 'uuid';
 import firebase from '../../../firebase';
 
-export default function PointsPage() {
+function PointsPage() {
     const [stores, setStores] = useState([]);
     const [storeDeleted, setStoreDeleted] = useState(null);
-    // const [userPoints, setUserPoints] = useState(null);
-    // const [maxPoints, setMaxPoints] = useState(null);
 
-    useEffect(() => {
+    useEffect(()=> {
         console.log('useEffect')
         db.collection('usertype')
         .get()
@@ -24,12 +22,26 @@ export default function PointsPage() {
             })
         })
         .catch(err=> console.log(err))
-    }, [storeDeleted])
 
-    let deleteStore = (e) => {
-        // e.preventDefault();
-        setStoreDeleted(e.target.id)
+        if(storeDeleted) {
+            console.log(storeDeleted)
+            db.collection('stores')
+            .get()
+            .then(snapshot=> {
+                snapshot.forEach(doc=> {
+                    if (doc.data().uid == storeDeleted) {
+                        let usersArray = db.collection("stores").doc(`${doc.id}`)
+                        usersArray.update({
+                            stores: firebase.firestore.FieldValue.arrayUnion(`${auth.currentUser.uid}`)
+                        })
+                    }
+                })
+            })
+            .catch(err=> console.log(err))
+        } 
+    }, [])
 
+   let deleteStore = (e) => {
         db.collection('usertype')
         .get()
         .then(snapshot=> {
@@ -43,6 +55,7 @@ export default function PointsPage() {
                     storesArray.update({
                         stores: newStoresList,
                     })
+                    setStores(doc.data().stores)
                 }
             })
         })
@@ -50,7 +63,6 @@ export default function PointsPage() {
     }
 
     return (
-
         <div>
             <div className="pointsPage">
                 <h1>Your Points</h1>
@@ -59,4 +71,8 @@ export default function PointsPage() {
             <Footer/>
         </div>
     )
+        
+    
 }
+
+export default PointsPage

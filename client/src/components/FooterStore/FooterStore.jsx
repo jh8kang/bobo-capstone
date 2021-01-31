@@ -7,7 +7,7 @@ export default function FooterStore() {
         <footer>
             <Link to="/home/store"><div className="icon__home"></div> </Link>
             <Link><div className="icon__camera"></div></Link>
-            <Link><div className="icon__profile"></div></Link>
+            <Link to="/store/profile"><div className="icon__profile"></div></Link>
         </footer>
     )
 }
