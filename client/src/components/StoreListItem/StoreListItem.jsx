@@ -19,6 +19,23 @@ class StoreListItem extends Component {
             })
         })
         .catch(err=> console.log(err))
+
+        db.collection('stores')
+        .get()
+        .then(snapshot=> {
+            snapshot.forEach(doc=> {
+                // console.log(this.props.store.uid)
+                // console.log(doc.data().uid)
+                if (doc.id == this.props.store.uid) {
+                    console.log("hi")
+                    let storesArray = db.collection("stores").doc(`${doc.id}`)
+                    storesArray.update({
+                        users: firebase.firestore.FieldValue.arrayUnion(`${auth.currentUser.uid}`)
+                    })
+                }
+            })
+        })
+        .catch(err=> console.log(err))
     }
 
     render() {

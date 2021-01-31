@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom';
 
 
 export default function StoreSignupPage() {
-    let [useruid, setUserUid] = useState("")
+    let [useruid, setUserUid] = useState("");
 
     let signup = (e)=>  {
         e.preventDefault();

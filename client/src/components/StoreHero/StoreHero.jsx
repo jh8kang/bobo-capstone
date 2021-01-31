@@ -19,11 +19,17 @@ export default function StoreHero(props) {
     }, [])
 
     if (storeInfo.users) {
+        let usersCount = storeInfo.users.length;
+        let collectors="collectors";
+        if(usersCount == 1) {
+            collectors = "collector"
+        }
+
         return (
             <div className="store-hero">
                 <p className="store-hero__header">Logged in as {storeInfo.username}</p>
                 <p className="store-hero__name">{storeInfo.name}</p>
-                <p className="store-hero__collector-count">{storeInfo.users.length} collectors </p>
+                <p className="store-hero__collector-count">{usersCount} {collectors} </p>
             </div>
         )
     } else {

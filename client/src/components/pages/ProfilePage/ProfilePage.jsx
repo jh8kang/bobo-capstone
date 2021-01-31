@@ -30,9 +30,6 @@ export default function ProfilePage(props) {
 
     let updateUserInfo = (e) => {
         e.preventDefault();
-        // console.log(e.target.name.value)
-        // console.log(e.target.username.value)
-        // console.log(e.target.location.value)
         db.collection('usertype')
         .get()
         .then(snapshot=> {
