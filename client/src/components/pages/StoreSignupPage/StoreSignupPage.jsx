@@ -2,12 +2,16 @@ import React, {useState} from 'react';
 import './StoreSignupPage.scss';
 import {auth, db} from '../../../firebase';
 import {Redirect} from 'react-router-dom';
+import store1 from '../../../assets/images/store1.jpg';
+import firebase from 'firebase';
 
 
 export default function StoreSignupPage() {
     let [useruid, setUserUid] = useState("");
+    let [fileUrl, setFileUrl] = useState(null);
 
-    let signup = (e)=>  {
+
+    let signup =  (e)=>  {
         e.preventDefault();
         auth.createUserWithEmailAndPassword(e.target.username.value, e.target.password.value)
         .then(user=> {
@@ -21,6 +25,7 @@ export default function StoreSignupPage() {
                 location:e.target.location.value,
                 users: [],
                 type: "storekeeper",
+                image: null,
             })
         })
         .catch(err=>{

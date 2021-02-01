@@ -2,7 +2,7 @@ import React from 'react';
 import './StoreEditModal.scss';
 
 
-export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit}) {
+export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit, onPhotoChange}) {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
 
     return (
@@ -10,6 +10,9 @@ export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit}) 
             <section className="store-edit">
                 <h1>Edit Page</h1>
                 <form id="editForm" onSubmit={updateStoreInfo}>
+                    <div>
+                        <input type="file" onChange={onPhotoChange}/>
+                    </div>
                     <div>
                         <label htmlFor="name" >name</label>
                         <input className="store-edit__input" type="text" id="name" name="name" placeholder={storeInfo.name}/>
