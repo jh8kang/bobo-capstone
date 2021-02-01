@@ -25,6 +25,7 @@ class SignUpPage extends Component {
                 uid: user.user.uid,
                 stores: [],
                 type: "collector",
+                image: null,
             })
         })
         .catch(err=>{

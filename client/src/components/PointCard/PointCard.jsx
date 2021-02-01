@@ -18,7 +18,7 @@ export default function PointCard(props) {
     let {store, deleteStore} = props
     let maxPoints = store.pointmax;
     let userPoints = starCounter(store.points);
-    let restOfPoints = starCounter(maxPoints - userPoints);
+    let restOfPoints = starCounter(maxPoints - store.points);
 
     return (
         <div className="pointcard">
