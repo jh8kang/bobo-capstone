@@ -1,19 +1,25 @@
 import React from 'react';
-import './EditModal.scss';
-import profile from '../../assets/icons/profile.svg';
+import './StoreEditModal.scss';
 
-export default function EditModal({show, userInfo, updateUserInfo, hideEdit}) {
+
+export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit, onPhotoChange}) {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
+
     return (
         <div className={showHideClassName}>
-            <section className="modal-main">
-                <div>
-                    <img className="modal-main__profile" src={profile} alt="user profile"/>
-                </div>
-                <form className="signupForm" onSubmit={updateUserInfo}>
+            <section className="store-edit">
+                <h1>Edit Page</h1>
+                <form id="editForm" onSubmit={updateStoreInfo}>
+                    <div>
+                        <input type="file" onChange={onPhotoChange}/>
+                    </div>
                     <div>
                         <label htmlFor="name" >name</label>
-                        <input className="modal-main__input" type="text" id="name" name="name" placeholder={userInfo.name}/>
+                        <input className="store-edit__input" type="text" id="name" name="name" placeholder={storeInfo.name}/>
+                    </div>
+                    <div>
+                        <label htmlFor="description" >name</label>
+                        <textarea className="store-edit__input" type="text" id="description" name="description" placeholder={storeInfo.description}/>
                     </div>
                     <div>
                         <label htmlFor="location">location</label>
@@ -30,3 +36,4 @@ export default function EditModal({show, userInfo, updateUserInfo, hideEdit}) {
         </div>
     )
 }
+

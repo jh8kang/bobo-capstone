@@ -9,6 +9,8 @@ class SignUpPage extends Component {
         useruid: "",
         image: null,
     }
+
+// adds collector to firestore
     signup = (e)=>  {
         e.preventDefault();
         auth.createUserWithEmailAndPassword(e.target.username.value, e.target.password.value)
@@ -16,7 +18,7 @@ class SignUpPage extends Component {
             this.setState({
                 useruid: user.user.uid
             })
-            var userRef = db.collection("usertype").add({
+            db.collection("usertype").add({
                 name: e.target.name.value,
                 username: e.target.username.value,
                 location:e.target.location.value,
@@ -30,17 +32,7 @@ class SignUpPage extends Component {
                 error: err.message
             })
         })
-
     }
-
-    onImageChange = event => {
-        if (event.target.files && event.target.files[0]) {
-          let img = event.target.files[0];
-          this.setState({
-            image: URL.createObjectURL(img)
-          });
-        }
-      };
 
     render() {
         if (this.state.useruid) {
@@ -73,13 +65,8 @@ class SignUpPage extends Component {
                     </div>
                     <button >Sign up</button>
                 </form>
-                {/* <div className="">
-                    <input type="file" name="myImage" onChange={this.onImageChange} />
-                </div>
-                <img src={`${this.state.image}`}/> */}
             </div>
         )
-
     }
 }
 

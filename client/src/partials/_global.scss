@@ -7,7 +7,14 @@
      text-decoration: none;
      font-family: sans-serif;
      font-size: 11px;
+    //  overflow-y: hidden;
+    -ms-overflow-style: none;
+    cursor:crosshair;
  }
+
+ ::-webkit-scrollbar {
+    display: none;
+}
 
  $grey: #cecece;
  $main: #B5C9C3;

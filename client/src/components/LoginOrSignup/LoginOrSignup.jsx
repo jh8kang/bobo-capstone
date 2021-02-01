@@ -1,6 +1,5 @@
-import React, {Component} from 'react'
-import UserLoginPage from '../pages/UserLoginPage/UserLoginPage'
-import SignUpPage from '../pages/SignUpPage/SignUpPage';
+import React, {Component} from 'react';
+import UserLoginPage from '../pages/UserLoginPage/UserLoginPage';
 import {Redirect} from 'react-router-dom';
 
 class LoginOrSignup extends Component {
@@ -9,6 +8,7 @@ class LoginOrSignup extends Component {
         login: false,
     }
 
+// signupRouter changes state so that the signup page renders
     signupRouter = (e) => {
         e.preventDefault();
         this.setState({
@@ -16,19 +16,13 @@ class LoginOrSignup extends Component {
         })
     }
 
-
     render() {
        
         if(!this.state.signup) {
-            // return <SignUpPage signup={this.signup}/>
             return <Redirect to="/signup"/>
         } else {
-            return <UserLoginPage typeHandler={this.props.typeHandler} signupRouter = {this.signupRouter} loginHandler={this.props.loginHandler} />
+            return <UserLoginPage typeHandler={this.props.typeHandler} signupRouter = {this.signupRouter} />
         }
-            // <div>
-            //     {this.state.signup? <UserLoginPage typeHandler={this.props.typeHandler}signupRouter = {this.signupRouter} loginHandler={this.props.loginHandler} />: <SignUpPage signup={this.signup}/>}
-            // </div>
-        
     }
 }
 export default LoginOrSignup

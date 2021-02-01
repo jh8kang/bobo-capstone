@@ -1,0 +1,42 @@
+
+footer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0px 15px 0px;
+    border-top: 1px solid #e5e5e5;
+    z-index: 1;
+    background-color: white;
+
+}
+
+.navBox {
+
+
+}
+
+.icon {
+    &__home {
+        background-image: url('../../assets/icons/home.svg');
+        width: 25px;
+        height: 25px;
+        background-size: cover;
+    }
+    &__camera {
+        background-image: url('../../assets/icons/camera.svg');
+        width: 25px;
+        height: 25px;
+        background-size: cover;
+    }
+    &__profile {
+        background-image: url('../../assets/icons/profile.png');
+        width: 25px;
+        height: 25px;
+        background-size: cover;
+
+    }
+
+}
