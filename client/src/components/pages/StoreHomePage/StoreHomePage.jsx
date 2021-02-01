@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './StoreHomePage.scss';
 import FooterStore from '../../FooterStore/FooterStore';
 import StoreHero from '../../StoreHero/StoreHero';
@@ -8,7 +8,6 @@ export default function StoreHomePage() {
         <div>
             <StoreHero />
             <FooterStore/>
-            
         </div>
     )
 }

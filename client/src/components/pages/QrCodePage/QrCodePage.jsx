@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './QrCodePage.scss';
 import Footer from '../../Footer/Footer';
 import QRCode from 'qrcode'
-import {auth, db} from '../../../firebase';
+import {auth} from '../../../firebase';
 
 function generateQR(uid) {
     // let useruid = "fake"

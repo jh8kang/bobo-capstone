@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {db, auth} from '../../../firebase';
+import {db} from '../../../firebase';
 import './HomePage.scss';
-import Header from '../../Header/Header';
 import Footer from '../../Footer/Footer';
 import SearchBar from '../../SearchBar/SearchBar';
 import ScrollHero from '../../ScrollHero/ScrollHero';
 import StoreList from '../../StoreList/StoreList';
-import {Route} from 'react-router-dom';
-import QrCodePage from '../../pages/QrCodePage/QrCodePage';
+
 
 function HomePage()  {
   const [stores, setStores] = useState(null);
@@ -27,29 +25,27 @@ function HomePage()  {
     })
     .catch(err=> console.log(err))
   }, [searchStore])
-  
 
-    let searchHandler = (e) => {
-      e.preventDefault();
-      console.log(typeof e.target.search.value)
+// searchHandler changes the render depending on what the user inputs
+  let searchHandler = (e) => {
+    e.preventDefault();
+    stores.forEach(store => {
+      if (store.name.toLowerCase() === e.target.search.value.toLowerCase()) {
+        setSearchStore(store);
+      } else if (e.target.search.value === "") {
+        setSearchStore(null);
+      }
+    })
+  }
 
-      stores.map(store => {
-        if (store.name.toLowerCase() === e.target.search.value.toLowerCase()) {
-          setSearchStore(store);
-        } else if (e.target.search.value == "") {
-          setSearchStore(null);
-        }
-      })
-    }
-
-    return (
-      <div className="home">
-          <SearchBar searchHandler={searchHandler}/>
-          <ScrollHero/>
-          <StoreList stores={stores} searchStore={searchStore}/>
-          <Footer type="home"/>
-        </div>
-    )
+  return (
+    <div className="home">
+        <SearchBar searchHandler={searchHandler}/>
+        <ScrollHero/>
+        <StoreList stores={stores} searchStore={searchStore}/>
+        <Footer type="home"/>
+      </div>
+  )
     
 }
 

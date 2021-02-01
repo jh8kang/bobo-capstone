@@ -2,7 +2,6 @@ import React from 'react';
 import LoginOrHome from './components/LoginOrHome/LoginOrHome.jsx';
 import LandingPage from './components/pages/LandingPage/LandingPage';
 import StoreHomePage from './components/pages/StoreHomePage/StoreHomePage.jsx';
-import StoreLoginPage from './components/pages/StoreLoginPage/StoreloginPage';
 import QrCodePage from './components/pages/QrCodePage/QrCodePage';
 import HomePage from './components/pages/HomePage/HomePage';
 import SignUpPage from './components/pages/SignUpPage/SignUpPage';

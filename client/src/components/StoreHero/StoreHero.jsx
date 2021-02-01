@@ -10,7 +10,7 @@ export default function StoreHero(props) {
         .get()
         .then(snapshot=> {
             snapshot.forEach(doc=> {
-                if (doc.data().uid == auth.currentUser.uid) {
+                if (doc.data().uid === auth.currentUser.uid) {
                     setStoreInfo(doc.data())
                 }
             })
@@ -21,7 +21,8 @@ export default function StoreHero(props) {
     if (storeInfo.users) {
         let usersCount = storeInfo.users.length;
         let collectors="collectors";
-        if(usersCount == 1) {
+
+        if(usersCount === 1) {
             collectors = "collector"
         }
 

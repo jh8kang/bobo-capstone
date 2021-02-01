@@ -2,21 +2,18 @@ import React, {useState} from 'react';
 import './StoreSignupPage.scss';
 import {auth, db} from '../../../firebase';
 import {Redirect} from 'react-router-dom';
-import store1 from '../../../assets/images/store1.jpg';
-import firebase from 'firebase';
 
 
 export default function StoreSignupPage() {
     let [useruid, setUserUid] = useState("");
-    let [fileUrl, setFileUrl] = useState(null);
 
-
+// store to firestore
     let signup =  (e)=>  {
         e.preventDefault();
         auth.createUserWithEmailAndPassword(e.target.username.value, e.target.password.value)
         .then(user=> {
             setUserUid(user.user.uid)
-            var userRef = db.collection("stores").add({
+            db.collection("stores").add({
                 uid: user.user.uid,
                 name: e.target.name.value,
                 description: e.target.description.value,
