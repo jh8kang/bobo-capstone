@@ -10,6 +10,8 @@ export default function PointManagePage() {
     let [userInfo, setUserInfo] = useState({});
     let [storeId, setStoreId] = useState({});
     let [pageLoader, setPageLoader] = useState(false);
+    let [currentPoints, setCurrentPoints] = useState(0);
+    let [restOfPoints, setRestOfPoints] = useState(0);
 
     useEffect(()=> {
         db.collection('stores')
@@ -22,6 +24,7 @@ export default function PointManagePage() {
             })
         })
         .catch(err=> console.log(err))
+
 
     }, [pageLoader])
 
@@ -43,6 +46,13 @@ export default function PointManagePage() {
             snapshot.forEach(doc=> {
                 if (doc.data().username === e.target.searchUser.value) {
                     setUserInfo(doc.data())
+                    doc.data().stores.map(store=> {
+                        if (store.id === storeId) {
+                            setCurrentPoints(store.points)
+                            let restPoints = store.pointmax - store.points;
+                            setRestOfPoints(restPoints)
+                        }
+                    })
                 }
             })
         })
@@ -53,14 +63,34 @@ export default function PointManagePage() {
         setPageLoader(!pageLoader)
     }
 
+    let currentPointsHandler = ()=> {
+        setCurrentPoints(currentPoints + 1);
+        setRestOfPoints(restOfPoints - 1);
+        db.collection("usertype")
+        .get()
+        .then(snapshot=> {
+            snapshot.forEach(doc => {
+                if (doc.data().uid === userInfo.uid) {
+                    let data = doc.data().stores
+                    let store = data.find(store=> store.id === storeId)
+                    store.points +=1
+                    db.collection("usertype").doc(`${doc.id}`).update({
+                        stores: data
+                    })
+
+                }
+            })
+        })
+        pageLoadHandler();
+    }
+
     return (
         <div className="point-manager">
             <h1 className="point-manager__title">Point Manager</h1>
             <form onSubmit={showUserProfile} id="userSearchBar" className="point-form">
-                {/* <label htmlFor="searchUser">Search user by username</label> */}
                 <input className="point-form__search-bar" type="text" placeholder="Search user by username" id="searchUser" name="searchUser"/>
             </form>
-            <PointAdderModal show={show} hideUserProfile={hideUserProfile} userInfo={userInfo} storeId={storeId} pageLoadHandler={pageLoadHandler}/>
+            <PointAdderModal show={show} restOfPoints={restOfPoints} currentPoints={currentPoints} currentPointsHandler={currentPointsHandler}hideUserProfile={hideUserProfile} userInfo={userInfo} storeId={storeId} pageLoadHandler={pageLoadHandler}/>
             
             <FooterStore/>
         </div>
