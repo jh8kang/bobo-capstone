@@ -35,7 +35,7 @@ export default function StoreProfilePage(props) {
             })
         })
         .catch(err=> console.log(err))
-    }, [pageLoader])
+    }, [pageLoader, fileUrl])
 
 // logout function
     let logout =()=> {
@@ -91,13 +91,12 @@ export default function StoreProfilePage(props) {
             <div className="store-profile">
                 <section className="profile__hero">
                     <div className="profile__header">
-                        <p className="store__username">{storeInfo.username}</p>
-                        <button onClick={logout} className="store__logout">Logout</button>
-                        <img className="icon-edit"src={editBtn} onClick={showEdit} alt="edit"/>
+                        <button onClick={logout} className="store__logout">LOGOUT</button>
                     </div>
                     <p className="store__name">{storeInfo.name}</p>
                 </section>
                 <section className="profile__store-info">
+                    <img className="icon-edit"src={editBtn} onClick={showEdit} alt="edit"/>
                     <img className="store-info__img"src={imageUrl} alt="store profile"/>
                     <div className="store-info__container">
                         <p className="store-info__label">Store Name:</p>
