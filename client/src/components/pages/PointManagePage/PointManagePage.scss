@@ -9,6 +9,15 @@
         margin-top: 10%;
         margin-bottom: 15px;
     }
+    &__scanner {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        padding: 10px;
+        border: 1px solid $main;
+        border-radius: 5px;
+
+    }
 }
 
 .point-form {

@@ -3,6 +3,8 @@ import './PointManagePage.scss';
 import FooterStore from '../../FooterStore/FooterStore';
 import PointAdderModal from '../../PointAdderModal/PointAdderModal';
 import {db, auth} from '../../../firebase';
+import QrReader from 'react-qr-scanner';
+
 
 
 export default function PointManagePage() {
@@ -12,6 +14,13 @@ export default function PointManagePage() {
     let [pageLoader, setPageLoader] = useState(false);
     let [currentPoints, setCurrentPoints] = useState(0);
     let [restOfPoints, setRestOfPoints] = useState(0);
+    let [delay] = useState(100);
+    let [result, setResult] = useState("no result"); 
+
+    const previewStyle = {
+        height: 240,
+        width: 320
+    }
 
     useEffect(()=> {
         db.collection('stores')
@@ -24,8 +33,6 @@ export default function PointManagePage() {
             })
         })
         .catch(err=> console.log(err))
-
-
     }, [pageLoader])
 
 
@@ -63,6 +70,7 @@ export default function PointManagePage() {
         setPageLoader(!pageLoader)
     }
 
+// Adds a point to state and to the database
     let currentPointsHandler = ()=> {
         setCurrentPoints(currentPoints + 1);
         setRestOfPoints(restOfPoints - 1);
@@ -77,11 +85,19 @@ export default function PointManagePage() {
                     db.collection("usertype").doc(`${doc.id}`).update({
                         stores: data
                     })
-
                 }
             })
         })
         pageLoadHandler();
+    }
+
+    let handleScan = (data)=> {
+        setResult(data)
+
+    }
+
+    let handleError = (err) => {
+        console.log(err)
     }
 
     return (
@@ -90,6 +106,15 @@ export default function PointManagePage() {
             <form onSubmit={showUserProfile} id="userSearchBar" className="point-form">
                 <input className="point-form__search-bar" type="text" placeholder="Search user by username" id="searchUser" name="searchUser"/>
             </form>
+            <div className="point-manager__scanner">
+                <QrReader
+                    delay={delay}
+                    style={previewStyle}
+                    onError={handleError}
+                    onScan={handleScan}
+                />
+            </div>
+                <p>{result}</p>
             <PointAdderModal show={show} restOfPoints={restOfPoints} currentPoints={currentPoints} currentPointsHandler={currentPointsHandler}hideUserProfile={hideUserProfile} userInfo={userInfo} storeId={storeId} pageLoadHandler={pageLoadHandler}/>
             
             <FooterStore/>
