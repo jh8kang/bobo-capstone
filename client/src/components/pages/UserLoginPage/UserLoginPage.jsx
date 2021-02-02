@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {auth} from '../../../firebase';
 import {Link} from 'react-router-dom';
+import './UserLoginPage.scss';
 
 class UserLoginPage extends Component {
     state ={
@@ -25,23 +26,32 @@ class UserLoginPage extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Log In</h1>
-                <p></p>
-                <form onSubmit={this.login}>
-                    <label htmlFor="username">username: </label>
-                    <input type="email" id="username" name="username"/>
-                    <label htmlFor="password">password: </label>
-                    <input  type="password" id="password" name="password"/>
-                    <button type="submit">Login</button>
-                </form>
-                <Link to='/signup'>
-                    <p>Sign up as a point collector</p>
-                </Link>
-                <br></br>
-                <Link to='/signup/store'>
-                    <p>Register your store</p>
-                </Link>
+            <div className="login">
+                <div className="login__container">
+                    <h1 className="login__title">Log In to</h1>
+                    <h1 className="login__title__logo">BOBO</h1>
+                    <form onSubmit={this.login} className="login-form">
+                        <div className="login-form__items">
+                            {/* <label className="login-form__items__label" htmlFor="username">username: </label> */}
+                            <input className="login-form__items__input" placeholder="email" type="email" id="username" name="username"/>
+                        </div>
+                        <div>
+                            {/* <label htmlFor="password">password: </label> */}
+                            <input className="login-form__items__input" placeholder="password" type="password" id="password" name="password"/>
+                        </div>
+                        <p className="login-form__error-message">{this.state.error}</p>
+                        <button className="login-form__submit"type="submit">Login</button>
+                    </form>
+                    <div className="login__links">
+                        <Link to='/signup' className="login__links__link">
+                            <p>Sign up as a point collector</p>
+                        </Link>
+                        <br></br>
+                        <Link to='/signup/store' className="login__links__link">
+                            <p>Register your store</p>
+                        </Link>
+                    </div>
+                </div>
             </div>
         )
     }
