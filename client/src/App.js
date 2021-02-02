@@ -9,6 +9,7 @@ import PointsPage from './components/pages/PointsPage/PointsPage';
 import ProfilePage from './components/pages/ProfilePage/ProfilePage';
 import StoreSignupPage from './components/pages/StoreSignupPage/StoreSignupPage';
 import StoreProfilePage from './components/pages/StoreProfilePage/StoreProfilePage';
+import PointManagePage from './components/pages/PointManagePage/PointManagePage';
 import './App.scss';
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
@@ -33,6 +34,7 @@ class App extends React.Component {
               <Route path="/user/profile" exact component={(routerProps)=> <ProfilePage {...routerProps}/>}/>
               <Route path="/store/profile" exact component={(routerProps)=><StoreProfilePage {...routerProps}/>}/>
               <Route path="/home/user/qr" component={QrCodePage}/>
+              <Route path="/store/users/manage" component={PointManagePage}/>
           </Switch>
         </BrowserRouter>
 

@@ -34,39 +34,31 @@ export default function StoreSignupPage() {
         return <Redirect to="/login"/>
     }
     return (
-        <div>
-        <h1>Sign Up</h1>
-        <form onSubmit={signup} className="signupForm">
-            <div>
-                <label htmlFor="name">Store Name</label>
-                <input type="text" id="name" name="name"/>
+        <div className="signup">
+            <div className="signup__container">
+                <h1 className="signup__title">Sign Up To</h1>
+                <h1 className="signup__title__logo">BOBO</h1>
+                <form onSubmit={signup} className="signup-form">
+                    
+                        <input className="signup-form__input" placeholder="Store Name" type="text" id="name" name="name"/>
+                        <textarea className="signup-form__input" placeholder="Any text that clients will see..." id="description" name="description"/>
+                        <input className="signup-form__input" placeholder="email" type="email" id="username" name="username"/>
+                        <input className="signup-form__input" placeholder="password" type="password" id="password" name="password"/>
+                        <input className="signup-form__input" placeholder="maximum points" id="pointmax" name="pointmax" type="number"/>
+                        <div className="signup-form__input--location">
+                            <label className="signup-form__label" htmlFor="location">location</label>
+                            <select id="location" name="location">
+                                <option value="vancouver">Vancouver</option>
+                                <option value="toronto">Toronto</option>
+                                <option value="toronto">Calgary</option>
+                            </select>
+                        </div>
+                    
+                    
+                    <button className="signup-form__button">Sign up</button>
+                </form>
+
             </div>
-            <div>
-                <label htmlFor="description">Description(shows on the client page)</label>
-                <textarea id="description" name="description" className="store__description"/>
-            </div>
-            <div>
-                <label htmlFor="username">email</label>
-                <input type="email" id="username" name="username"/>
-            </div>
-            <div>
-                <label htmlFor="password">password</label>
-                <input type="password" id="password" name="password"/>
-            </div>
-            <div>
-                <label htmlFor="location">location</label>
-                <select id="location" name="location">
-                    <option value="vancouver">Vancouver</option>
-                    <option value="toronto">Toronto</option>
-                    <option value="toronto">Calgary</option>
-                </select>
-            </div>
-            <div>
-                <label htmlFor="pointmax">Maxium Points(number)</label>
-                <input id="pointmax" name="pointmax" type="number"/>
-            </div>
-            <button >Sign up</button>
-        </form>
-    </div>
+        </div>
     )
 }

@@ -25,6 +25,7 @@ class SignUpPage extends Component {
                 uid: user.user.uid,
                 stores: [],
                 type: "collector",
+                image: null,
             })
         })
         .catch(err=>{
@@ -40,31 +41,27 @@ class SignUpPage extends Component {
         }
     
         return (
-            <div>
-                <h1>Sign Up</h1>
-                <form onSubmit={this.signup} className="signupForm">
-                    <div>
-                        <label htmlFor="name">name</label>
-                        <input type="text" id="name" name="name"/>
-                    </div>
-                    <div>
-                        <label htmlFor="username">email</label>
-                        <input type="email" id="username" name="username"/>
-                    </div>
-                    <div>
-                        <label htmlFor="password">password</label>
-                        <input type="password" id="password" name="password"/>
-                    </div>
-                    <div>
-                        <label htmlFor="location">location</label>
-                        <select id="location" name="location">
-                            <option value="vancouver">Vancouver</option>
-                            <option value="toronto">Toronto</option>
-                            <option value="toronto">Calgary</option>
-                        </select>
-                    </div>
-                    <button >Sign up</button>
-                </form>
+            <div className="signup">
+                <div className="signup__container">
+                    <h1 className="signup__title">Sign Up To</h1>
+                    <h1 className="signup__title__logo">BOBO</h1>
+                    <form onSubmit={this.signup} className="signup-form">
+                            <input className="signup-form__input" placeholder="Name" type="text" id="name" name="name"/>
+                            <input className="signup-form__input" placeholder="email"type="email" id="username" name="username"/>
+                            <input className="signup-form__input" placeholder="password" type="password" id="password" name="password"/>
+                            <div className="signup-form__input--location">
+                                <label className="signup-form__label" htmlFor="location">location</label>
+                                <select className="signup-form__location__select" id="location" name="location">
+                                    <option value="vancouver">Vancouver</option>
+                                    <option value="toronto">Toronto</option>
+                                    <option value="toronto">Calgary</option>
+                                </select>
+                            </div>
+                    
+                        <button className="signup-form__button">Sign up</button>
+                    </form>
+
+                </div>
             </div>
         )
     }

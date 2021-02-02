@@ -1,6 +1,6 @@
 @import '../../../partials/global';
 
-.signup {
+.login {
     display: flex;
     justify-content: center;
     height: 100vh;
@@ -28,34 +28,44 @@
         background-color: rgba(255,255,255, 0.2);
         border-radius: 20px;
     }
+    &__links {
+        display: flex;
+        width: 90%;
+        margin-top: 15px;
+        flex-direction: column;
+        justify-self: flex-start;
+        &__link {
+            &:visited {
+                color: $dark-main;
+            }
+            &:active {
+                color: white;
+            }
+        }
+    }
 }
 
-.signup-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.login-form {
     width: 90%;
-    &__label {
-        margin-right: 10px;
-    }
-    &__input {
+    &__items {
         width: 100%;
-        border: 1px solid $lighter-main;
-        padding: 10px;
-        border-radius: 5px;
-        font-size: 13px;
-        outline: none;
-        resize: none;
-        &:focus {
-            border: 2px solid #8094a8
-        }
-        &--location {
-            display: flex;
+        &__input {
             width: 100%;
+            border: 1px solid $lighter-main;
             padding: 10px;
-
+            border-radius: 5px;
+            font-size: 13px;
+            outline: none;
+            &:focus {
+                border: 2px solid #8094a8
+            }
         }
-    }&__button { 
+    }
+    &__error-message {
+        font-size: 13px;
+        margin-top: 15px;
+    }
+    &__submit {
         width: 100%;
         padding: 10px;
         margin-top: 25px;
@@ -65,11 +75,5 @@
         font-size: 15px;
         outline: none;
     }
-}
 
-select {
-    outline: none;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
 }
