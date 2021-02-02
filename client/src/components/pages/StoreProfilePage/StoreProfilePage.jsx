@@ -12,7 +12,7 @@ export default function StoreProfilePage(props) {
     const [storeInfo, setStoreInfo] = useState({});
     const [pageLoader, setPageLoad] = useState(false);
     const [show, setShow] = useState(false);
-    const [fileUrl, setFileUrl] = useState(null)
+    const [fileUrl, setFileUrl] = useState(null);
 
 // variables 
     let imageUrl;
@@ -84,6 +84,7 @@ export default function StoreProfilePage(props) {
         var fileRef = storageRef.child(file.name);
         await fileRef.put(file)
         setFileUrl(await fileRef.getDownloadURL());
+        // setPageLoad(!pageLoader)
     }
 
     if (storeInfo.users) {

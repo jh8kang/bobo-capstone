@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './ScrollHero.scss';
 import FeaturedCard from '../FeaturedCard/FeaturedCard';
 import {v4 as uuid} from 'uuid';

@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import profileImage from '../../assets/icons/profile.svg';
-import {db} from '../../firebase';
 import './PointAdderModal.scss';
 import yellowStar from '../../assets/icons/point-yellow.svg';
 import whiteStar from '../../assets/icons/point-white.svg';
@@ -23,7 +22,7 @@ export default function EditModal({show, userInfo, hideUserProfile, currentPoint
     let restOfPointsArray = starCounter(restOfPoints)
 
 // prompts when user searched doesn't exist
-    if (userInfo.name == undefined && show ===true) {
+    if (userInfo.name === undefined && show === true) {
         return <p>loading...</p>
     } 
 
@@ -40,11 +39,11 @@ export default function EditModal({show, userInfo, hideUserProfile, currentPoint
                     <p>{userInfo.username}</p>
                 </div>
                 <div className="modal-main__points">     
-                    {userPointsArray.map(point=> {return <img className="modal-main__yellow-star" src={`${yellowStar}`}/>})}  
-                    {restOfPointsArray.map(point=> {return <img className="modal-main__yellow-star" src={`${whiteStar}`}/>})}  
+                    {userPointsArray.map(point=> {return <img className="modal-main__yellow-star" src={`${yellowStar}`} alt="yellow star" key={uuid()}/>})}  
+                    {restOfPointsArray.map(point=> {return <img className="modal-main__yellow-star" src={`${whiteStar}`} alt="white star" key={uuid()}/>})}  
                     <button className="modal-main__buttons__btn" onClick={currentPointsHandler}>Add point</button>
                 </div>
-                        <button className="modal-main__buttons__btn" onClick={hideUserProfile}>Ok</button>
+                <button className="modal-main__buttons__btn" onClick={hideUserProfile}>Ok</button>
             </section>
         </div>
     )

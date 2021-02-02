@@ -11,7 +11,7 @@ export default function EditModal({show, userInfo, updateUserInfo, hideEdit}) {
                     <img className="modal-main__profile" src={profile} alt="user profile"/>
                 </div>
                 <form className="signup-form" onSubmit={updateUserInfo}>
-                        <input className="modal-main__input" placeholder={`${userInfo.name}`} type="text" id="name" name="name" placeholder={userInfo.name}/>
+                        <input className="modal-main__input" placeholder={`${userInfo.name}`} type="text" id="name" name="name"/>
                     <div>
                         <label htmlFor="location" className="modal-main__label">LOCATION</label>
                         <select id="location" name="location">

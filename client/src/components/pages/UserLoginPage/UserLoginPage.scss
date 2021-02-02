@@ -35,11 +35,11 @@
         flex-direction: column;
         justify-self: flex-start;
         &__link {
-            &:visited {
+            &__text {
                 color: $dark-main;
             }
-            &:active {
-                color: white;
+            &:visited {
+                color: $main;
             }
         }
     }

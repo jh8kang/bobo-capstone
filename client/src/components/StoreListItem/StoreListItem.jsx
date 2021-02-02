@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './StoreListItem.scss';
 import defaultImage from '../../assets/images/default.jpg'
 import {db, auth}from '../../firebase';

@@ -4,7 +4,6 @@ import yellowStar from '../../assets/icons/point-yellow.svg';
 import whiteStar from '../../assets/icons/point-white.svg';
 import deleteBtn from '../../assets/icons/delete.svg';
 import {v4 as uuid} from 'uuid';
-import StoreSignupPage from '../pages/StoreSignupPage/StoreSignupPage';
 
 // starCounter takes in a num and creates an array of that length
 function starCounter(points) {

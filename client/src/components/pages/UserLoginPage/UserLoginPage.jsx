@@ -44,11 +44,11 @@ class UserLoginPage extends Component {
                     </form>
                     <div className="login__links">
                         <Link to='/signup' className="login__links__link">
-                            <p>Sign up as a point collector</p>
+                            <p className="login__links__link__text">Sign up as a point collector</p>
                         </Link>
                         <br></br>
                         <Link to='/signup/store' className="login__links__link">
-                            <p>Register your store</p>
+                            <p className="login__links__link__text">Register your store</p>
                         </Link>
                     </div>
                 </div>
