@@ -1,0 +1,27 @@
+@import '../../partials/global';
+
+.modal-main {
+    background-color: $main;
+    &__points {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+    &__yellow-star {
+        width: 20px;
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0px;
+        &__btn {
+            width: 45%;
+            outline: none;
+            background-color: transparent;
+            border: none;
+            color: $dark-main;
+        }
+    }
+}

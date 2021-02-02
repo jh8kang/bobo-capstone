@@ -1,42 +1,49 @@
 import React, {useState, useEffect} from 'react';
-import defaultProfile from '../../assets/images/default.jpg';
+import profileImage from '../../assets/icons/profile.svg';
 import {db} from '../../firebase';
-import firebase from 'firebase';
+import './PointAdderModal.scss';
+import yellowStar from '../../assets/icons/point-yellow.svg';
+import whiteStar from '../../assets/icons/point-white.svg';
+import {v4 as uuid} from 'uuid';
+
+// starCounter takes in a num and creates an array of that length
+function starCounter(points) {
+    let array = [];
+    for (let i = 0; i < points; i++) {
+        array.push(i)
+    }
+    return array;
+}
 
 export default function EditModal({show, userInfo, storeId, hideUserProfile, pageLoadHandler}) {
     let [currentPoints, setCurrentPoints] = useState(0);
-    let [pageLoader, setPageLoader] = useState(false);
+    let [maxPoints, setMaxPoints] = useState(0);
+    let [pointsLeft, setPointsLeft] = useState(0);
     const showHideClassName = show ? "modal display-block" : "modal display-none";
 
 // variables
-    let userImage;
-    let maxPoints;
-
-// sets user profile image
-    if (userInfo.image === null) {
-        userImage = defaultProfile
-    } else {
-        userImage = userInfo.image
-    }
-
+    let pointsLeftArray = starCounter(pointsLeft);
+    let currentPointsArray = starCounter(currentPoints);
+ 
     useEffect(()=> {
 // sets variables accordingly 
-        if (userInfo.stores !== undefined) {
+        if (userInfo.stores) {
             userInfo.stores.map(store=> {
                 if (store.id === storeId) {
-                    console.log(store)
-                    maxPoints = store.pointmax;
                     setCurrentPoints(store.points)
-        
+                    setMaxPoints(store.pointmax)
+                    let restOfPoints = store.pointmax - store.points;
+                    console.log(restOfPoints)
+                    setPointsLeft(restOfPoints)
                 }
             })
         }
-    }, [pageLoader])
+    }, [currentPoints])
 
 // pointHandler adds a point to current point amount
     let pointHandler = () => {
         setCurrentPoints(currentPoints + 1);
-        pageLoadHandler();
+        setPointsLeft(pointsLeft - 1);
         db.collection("usertype")
         .get()
         .then(snapshot=> {
@@ -52,20 +59,19 @@ export default function EditModal({show, userInfo, storeId, hideUserProfile, pag
                 }
             })
         })
-
-
+        pageLoadHandler();
     }
 
-    // prompts when user searched doesn't exist
-        if (userInfo.name == undefined && show ===true) {
-            return <p>user doesnt exist</p>
-        }
+// prompts when user searched doesn't exist
+    if (userInfo.name == undefined && show ===true) {
+        return <p>loading...</p>
+    } 
 
     return (
         <div className={showHideClassName}>
             <section className="modal-main">
                 <div>
-                    <img className="modal-main__profile" src={userImage} alt="user profile"/>
+                    <img className="modal-main__profile" src={profileImage} alt="user profile"/>
                 </div>
                 <div>
                     <p>{userInfo.name}</p>
@@ -73,17 +79,26 @@ export default function EditModal({show, userInfo, storeId, hideUserProfile, pag
                 <div>
                     <p>{userInfo.username}</p>
                 </div>
-                <div>
-                    <p>current points</p>
-                    <p>{currentPoints}</p>
-                    <button onClick={pointHandler}>Add point</button>
+                <div className="modal-main__points">
+                    {currentPointsArray.map(point=> {
+                        return <img className="modal-main__yellow-star" src={`${yellowStar}`} key={uuid()}/>
+                    })}
+                    {pointsLeftArray.map(point=> {
+                        return <img className="modal-main__yellow-star" src={`${whiteStar}`} key={uuid()}/>
+                    })}
+                    
+                    <button className="modal-main__buttons__btn" onClick={pointHandler}>Add point</button>
+                    
                 </div>
-                <div>
-                    <p>max points</p>
-                    <p>{maxPoints}</p>
-                </div>
-                <button onClick={hideUserProfile}>Ok</button>
+                        <button className="modal-main__buttons__btn" onClick={hideUserProfile}>Ok</button>
             </section>
         </div>
     )
+
+    
+    
+
 }
+
+
+
