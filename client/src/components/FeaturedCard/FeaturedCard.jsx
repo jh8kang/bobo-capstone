@@ -52,7 +52,6 @@ export default function FeaturedCard({store}) {
             <div className="card__imgBox">
                 <img onClick={clickHandler} className="card__img" src={`${storeImage}`} alt="store profile"/>
             </div>
-            {/* <p className="card__name">{store.name}</p> */}
         </div>
     )
 }

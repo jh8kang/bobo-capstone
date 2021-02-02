@@ -5,12 +5,9 @@ import QRCode from 'qrcode'
 import {auth} from '../../../firebase';
 
 function generateQR(uid) {
-    // let useruid = "fake"
-    console.log(uid)
     QRCode.toCanvas(document.getElementById('canvas'), uid, function(error) {
         if (error) console.error(error)
     })
-
 }
 
 class QrCodePage extends Component {
@@ -19,7 +16,6 @@ class QrCodePage extends Component {
         auth.onAuthStateChanged(function(user){
             if (user){
                 useruid = user.uid
-                console.log(useruid)
                 generateQR(useruid)
                 
             } else {
@@ -30,14 +26,17 @@ class QrCodePage extends Component {
 
     render() {
         return (
-            <div className="codePage">
-                <canvas id="canvas" className="canvas"></canvas>
-                <Footer/>
+            <div className="code-page">
+                <div className="code-page__container">
+                    <h1 className="code-page__title">SCAN YOUR CODE</h1>
+                    <div className="code-page__qr">
+                        <canvas id="canvas" className="canvas"></canvas>
+                        <Footer/>
+                    </div>
+                </div>
             </div>
         )
     }
-    
-
 }
 
 export default QrCodePage

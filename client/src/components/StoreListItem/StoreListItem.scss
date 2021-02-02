@@ -39,8 +39,9 @@
             padding: 2px;
             margin-bottom: 11px;
             outline: none;
-            &:focus {
-                background-color: beige;
+            &:active {
+                background-color: $main;
+                color: white;
             }
         }
     }

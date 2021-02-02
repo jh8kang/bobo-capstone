@@ -21,7 +21,7 @@ export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit, o
                 <h1 className="store-edit__title">EDIT</h1>
                 <img className="store-edit__image" src={storeImage}/>
                 <form id="edit-form" className="edit-form" onSubmit={updateStoreInfo}>
-                    <label className="edit-form__file-label" for="file">
+                    <label className="edit-form__file-label" htmlFor="file">
                         <img className="edit-form__icon__arrow" src={upArrow}/>
                         Choose File for Image 
                     </label>

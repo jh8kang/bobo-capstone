@@ -10,22 +10,21 @@ export default function EditModal({show, userInfo, updateUserInfo, hideEdit}) {
                 <div>
                     <img className="modal-main__profile" src={profile} alt="user profile"/>
                 </div>
-                <form className="signupForm" onSubmit={updateUserInfo}>
+                <form className="signup-form" onSubmit={updateUserInfo}>
+                        <input className="modal-main__input" placeholder={`${userInfo.name}`} type="text" id="name" name="name" placeholder={userInfo.name}/>
                     <div>
-                        <label htmlFor="name" >name</label>
-                        <input className="modal-main__input" type="text" id="name" name="name" placeholder={userInfo.name}/>
-                    </div>
-                    <div>
-                        <label htmlFor="location">location</label>
+                        <label htmlFor="location" className="modal-main__label">LOCATION</label>
                         <select id="location" name="location">
                             <option value="vancouver">Vancouver</option>
                             <option value="toronto">Toronto</option>
                             <option value="toronto">Calgary</option>
                         </select>
                     </div>
-                    <button>Save</button>
+                    <div className="modal-main__buttons">
+                        <button className="modal-main__buttons__btn">Save</button>
+                        <button className="modal-main__buttons__btn"onClick={hideEdit}>Cancel</button>
+                    </div>
                 </form>
-                <button onClick={hideEdit}>Cancel</button>
             </section>
         </div>
     )
