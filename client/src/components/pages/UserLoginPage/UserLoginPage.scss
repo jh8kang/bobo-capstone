@@ -9,6 +9,7 @@
     &__title {
         font-size: 13px;
         padding: 20px 0px;
+        font-weight: normal;
         &__logo {
             font-weight: normal;
             font-size: 50px;
@@ -16,7 +17,6 @@
             margin-bottom: 10%;
             margin-bottom: 15%;
         }
-
     }
     &__container {
         display: flex;
