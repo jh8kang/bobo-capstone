@@ -45,8 +45,6 @@ if (store.image) {
         })
         .catch(err=> console.log(err))
     }
-
-
     
         return (
             <div className="item">

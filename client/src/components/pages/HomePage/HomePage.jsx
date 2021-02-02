@@ -9,7 +9,8 @@ import StoreList from '../../StoreList/StoreList';
 
 function HomePage()  {
   const [stores, setStores] = useState(null);
-  const [searchStore, setSearchStore] = useState(null)
+  const [searchStore, setSearchStore] = useState(null);
+  let [pageLoader, setPageLoader] = useState(false);
 
   useEffect(()=> {
     db.collection('stores')
@@ -24,7 +25,11 @@ function HomePage()  {
       setStores(stores)
     })
     .catch(err=> console.log(err))
-  }, [searchStore])
+  }, [searchStore, pageLoader])
+
+let pageLoadHandler = () => {
+  setPageLoader(!pageLoader)
+}
 
 // searchHandler changes the render depending on what the user inputs
   let searchHandler = (e) => {
@@ -41,7 +46,7 @@ function HomePage()  {
   return (
     <div className="home">
         <SearchBar searchHandler={searchHandler}/>
-        <ScrollHero/>
+        <ScrollHero stores={stores} pageLoadHandler={pageLoadHandler}/>
         <StoreList stores={stores} searchStore={searchStore}/>
         <Footer type="home"/>
       </div>

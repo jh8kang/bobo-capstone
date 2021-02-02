@@ -35,7 +35,6 @@ function PointsPage() {
             })
         })
         .catch(err=> console.log(err))
-        
     }, [storeDeleted])
 
 // deleteStore deletes a store from the users list of stores that its collecing from 
