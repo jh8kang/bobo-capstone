@@ -8,6 +8,10 @@
         width: 80%;
         margin-top: 10px;
         margin-bottom: 30px;
+        &__value {
+            color: white;
+            margin-left: 5px;
+        }
     }
     &__yellow-star {
         width: 20px;
