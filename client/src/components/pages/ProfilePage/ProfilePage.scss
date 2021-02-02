@@ -6,32 +6,63 @@
     align-items: center;
     height: 100%;
     padding: 5%;
-    // padding-top: 30%;
     &__header {
         width: 100%;
         display: flex;
-        justify-content: flex-end;
+        flex-direction: column;
+        &__logout {
+            font-size: 12px;
+            align-self: flex-end;
+            margin-bottom: 10px;
+            border: none;
+            background: none;
+        }
         &__edit {
             width: 20px;
             height: 20px;
-        }
+            align-self: flex-end;
+            margin: 5px;
 
+        }
+        &__title {
+            align-self: flex-start;
+            font-weight: normal;
+            font-size: 1.5rem;
+            color: $dark-main;
+            position: relative;
+            top:-40px;
+            left: 10px;
+            background-color: white;
+            padding: 0px 10px;
+        }
     }
     &__info {
-        margin-top: 20%;
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
+        border: 1px solid $main;
+        border-radius: 5px;
+        height: 100vh;
+
         &__img {
             border: 3px solid black;
             border-radius: 10px;
             width: 100px;
             height: 100px;
+            opacity: 0.1;
+            margin-top: 20%;
+        }
+        &__name {
+            margin-bottom: 50px;
+            margin-top: 10px;
+        }
+        &__field {
+            margin-bottom: 10px;
+            width: 200px;
+            &--value {
+                color: $dark-main;
+            }
         }
     }   
-}
-
-.store-count {
-    color: $dark-main;
 }

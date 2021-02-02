@@ -2,4 +2,24 @@
 
 .point-manager {
     padding: 3%;
+    &__title {
+        font-weight: normal;
+        font-size: 1.5rem;
+        color: $dark-main;
+        margin-top: 10%;
+        margin-bottom: 15px;
+    }
+}
+
+.point-form {
+    display: flex;
+    flex-direction: column;
+    &__search-bar {
+        padding: 5px 10px;
+        outline: none;
+        border: 1px solid $main;
+        border-radius: 5px;
+
+    }
+
 }

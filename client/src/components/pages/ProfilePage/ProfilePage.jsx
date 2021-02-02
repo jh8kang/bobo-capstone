@@ -5,12 +5,14 @@ import profile from '../../../assets/icons/profile.svg';
 import edit from '../../../assets/icons/edit.svg';
 import {db, auth} from '../../../firebase';
 import EditModal from '../../EditModal/EditModal';
+import firebase from 'firebase';
 
 export default function ProfilePage(props) {
     const [userInfo, setUserInfo] = useState({});
     const [storeCount, setStoreCount] = useState(0);
     const [pageLoader, setPageLoad] = useState(false);
     const [show, setShow] = useState(false);
+    const [fileUrl, setFileUrl] = useState(null);
 
     useEffect(()=> {
         db.collection('usertype')
@@ -47,6 +49,15 @@ export default function ProfilePage(props) {
         .catch(err=> console.log(err))
     }
 
+// creates fileurl from user file input
+    let onPhotoChange = async (e) => {
+        var file = e.target.files[0];
+        var storageRef = firebase.storage().ref();
+        var fileRef = storageRef.child(file.name);
+        await fileRef.put(file)
+        setFileUrl(await fileRef.getDownloadURL());
+    }
+
 // closes edit modal
     let hideEdit = () => {
         setShow(false);
@@ -66,16 +77,18 @@ export default function ProfilePage(props) {
     return (
         <div className="profile">
             <div className="profile__header">
-                <img className="profile__header__edit"src={edit} onClick={showEdit} alt="edit"/>
+                <button className="profile__header__logout" onClick={logout}>LOGOUT</button>
             </div>
             <div className="profile__info">
+                <img className="profile__header__edit"src={edit} onClick={showEdit} alt="edit"/>
+                <h1 className="profile__header__title">PROFILE</h1>
                 <img className="profile__info__img"src={profile} alt="user profile"/>
-                <p>{userInfo.name}</p>
-                <p className="store">Collecting points from <span className="store-count">{storeCount}</span> boba stores</p>
-                <p>location: <span className="store-count">{userInfo.location}</span> </p>
-                <p>email: <span className="store-count">{userInfo.username}</span> </p>
+                <p className="profile__info__name">{userInfo.name}</p>
+                <p className="profile__info__field">email: <span className="profile__info__field--value">{userInfo.username}</span> </p>
+                <p className="profile__info__field">location: <span className="profile__info__field--value">{userInfo.location}</span> </p>
+                <p className="profile__info__field">Collecting from <span className="profile__info__field--value">{storeCount}</span> boba stores</p>
             </div>
-            <button onClick={logout}>logout</button>
+            
             <EditModal show={show} userInfo={userInfo} updateUserInfo={updateUserInfo} hideEdit={hideEdit}/>
             <Footer/>
         </div>

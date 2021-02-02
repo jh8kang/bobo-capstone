@@ -18,7 +18,7 @@ export default function StoreSignupPage() {
                 name: e.target.name.value,
                 description: e.target.description.value,
                 username: e.target.username.value,
-                pointmax: e.target.pointmax.value,
+                pointmax: parseInt(e.target.pointmax.value),
                 location:e.target.location.value,
                 users: [],
                 type: "storekeeper",

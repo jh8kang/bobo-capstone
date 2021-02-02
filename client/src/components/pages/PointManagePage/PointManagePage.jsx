@@ -4,6 +4,7 @@ import FooterStore from '../../FooterStore/FooterStore';
 import PointAdderModal from '../../PointAdderModal/PointAdderModal';
 import {db, auth} from '../../../firebase';
 
+
 export default function PointManagePage() {
     let [show, setShow] = useState(false);
     let [userInfo, setUserInfo] = useState({});
@@ -54,12 +55,13 @@ export default function PointManagePage() {
 
     return (
         <div className="point-manager">
-            <h1>Point Manager</h1>
-            <form onSubmit={showUserProfile} id="userSearchBar">
-                <label htmlFor="searchUser">Search user by username</label>
-                <input type="text" id="searchUser" name="searchUser"/>
+            <h1 className="point-manager__title">Point Manager</h1>
+            <form onSubmit={showUserProfile} id="userSearchBar" className="point-form">
+                {/* <label htmlFor="searchUser">Search user by username</label> */}
+                <input className="point-form__search-bar" type="text" placeholder="Search user by username" id="searchUser" name="searchUser"/>
             </form>
             <PointAdderModal show={show} hideUserProfile={hideUserProfile} userInfo={userInfo} storeId={storeId} pageLoadHandler={pageLoadHandler}/>
+            
             <FooterStore/>
         </div>
     )

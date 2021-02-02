@@ -35,7 +35,7 @@ export default function StoreProfilePage(props) {
             })
         })
         .catch(err=> console.log(err))
-    }, [pageLoader])
+    }, [pageLoader, fileUrl])
 
 // logout function
     let logout =()=> {
@@ -91,36 +91,37 @@ export default function StoreProfilePage(props) {
             <div className="store-profile">
                 <section className="profile__hero">
                     <div className="profile__header">
-                        <p className="store__username">{storeInfo.username}</p>
-                        <button onClick={logout} className="store__logout">Logout</button>
-                        <img className="icon-edit"src={editBtn} onClick={showEdit} alt="edit"/>
+                        <button onClick={logout} className="store__logout">LOGOUT</button>
                     </div>
-                    <p className="store__name">{storeInfo.name}</p>
+                    <p className="store__name">{storeInfo.name.toUpperCase()}</p>
                 </section>
                 <section className="profile__store-info">
+
+                    <img className="icon-edit"src={editBtn} onClick={showEdit} alt="edit"/>
+                 
                     <img className="store-info__img"src={imageUrl} alt="store profile"/>
                     <div className="store-info__container">
-                        <p className="store-info__label">Store Name:</p>
+                        <p className="store-info__label">STORE NAME:</p>
                         <p className="store-info__value">{storeInfo.name}</p>
                     </div>
                     <div className="store-info__container">
-                        <p className="store-info__label">Username:</p>
+                        <p className="store-info__label">USERNAME:</p>
                         <p className="store-info__value">{storeInfo.username}</p>
                     </div>
                     <div className="store-info__container">
-                        <p className="store-info__label">Description:</p>
+                        <p className="store-info__label">DESCRIPTION:</p>
                         <p className="store-info__value">{storeInfo.description}</p>
                     </div>
                     <div className="store-info__container">
-                        <p className="store-info__label">Location:</p>
+                        <p className="store-info__label">LOCATION:</p>
                         <p className="store-info__value">{storeInfo.location}</p>
                     </div>
                     <div className="store-info__container">
-                        <p className="store-info__label">Maximum Points:</p>
+                        <p className="store-info__label">MAX POINT:</p>
                         <p className="store-info__value">{storeInfo.pointmax}</p>
                     </div>
                     <div className="store-info__container">
-                        <p className="store-info__label">Number of collectors:</p>
+                        <p className="store-info__label">NUM OF COLLECTORS:</p>
                         <p className="store-info__value">{storeInfo.users.length}</p>
                     </div>
                 </section>

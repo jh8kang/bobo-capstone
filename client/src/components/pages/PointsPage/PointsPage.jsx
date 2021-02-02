@@ -35,7 +35,6 @@ function PointsPage() {
             })
         })
         .catch(err=> console.log(err))
-        
     }, [storeDeleted])
 
 // deleteStore deletes a store from the users list of stores that its collecing from 
@@ -61,8 +60,8 @@ function PointsPage() {
 
     return (
         <div>
-            <div className="pointsPage">
-                <h1>Your Points</h1>
+            <div className="points">
+                <h1 className="points__title">YOUR POINTS</h1>
                 {stores.map(store=> <PointCard store={store} key={uuid()} deleteStore={deleteStore}/>)}
             </div>
             <Footer/>
