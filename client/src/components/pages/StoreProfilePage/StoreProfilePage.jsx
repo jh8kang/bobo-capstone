@@ -7,7 +7,6 @@ import editBtn from '../../../assets/icons/edit.svg';
 import StoreEditModal from '../../StoreEditModal/StoreEditModal';
 import defaultImage from '../../../assets/images/default.jpg';
 
-
 export default function StoreProfilePage(props) {
     const [storeInfo, setStoreInfo] = useState({});
     const [pageLoader, setPageLoad] = useState(false);
@@ -97,9 +96,7 @@ export default function StoreProfilePage(props) {
                     <p className="store__name">{storeInfo.name.toUpperCase()}</p>
                 </section>
                 <section className="profile__store-info">
-
                     <img className="icon-edit"src={editBtn} onClick={showEdit} alt="edit"/>
-                 
                     <img className="store-info__img"src={imageUrl} alt="store profile"/>
                     <div className="store-info__container">
                         <p className="store-info__label">STORE NAME:</p>
@@ -130,7 +127,6 @@ export default function StoreProfilePage(props) {
                 <FooterStore/>
             </div>
         )
-
     }
     return <p>loading page...</p>
 

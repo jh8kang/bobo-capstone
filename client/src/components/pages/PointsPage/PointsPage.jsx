@@ -67,8 +67,6 @@ function PointsPage() {
             <Footer/>
         </div>
     )
-        
-    
 }
 
 export default PointsPage

@@ -6,6 +6,7 @@ import defaultImage from '../../assets/images/default.jpg';
 export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit, onPhotoChange}) {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
 
+// sets default image
     let storeImage;
     if (storeInfo.image) {
         storeImage = storeInfo.image

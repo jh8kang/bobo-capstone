@@ -92,7 +92,29 @@ export default function PointManagePage() {
     }
 
     let handleScan = (data)=> {
-        setResult(data)
+        // setResult(data)
+        setShow(true)
+        if (data !== null) {
+            console.log(data.text)
+            setResult(data.text)
+            db.collection("usertype")
+            .get()
+            .then(snapshot=> {
+                snapshot.forEach(doc=> {
+                    if (doc.data().uid === data.text) {
+                        setUserInfo(doc.data())
+                        doc.data().stores.map(store=> {
+                            if (store.id === storeId) {
+                                setCurrentPoints(store.points)
+                                let restPoints = store.pointmax - store.points;
+                                setRestOfPoints(restPoints)
+                            }
+                        })
+                    }
+                })
+            })
+        }
+
 
     }
 
