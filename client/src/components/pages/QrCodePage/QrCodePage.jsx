@@ -4,6 +4,7 @@ import Footer from '../../Footer/Footer';
 import QRCode from 'qrcode'
 import {auth} from '../../../firebase';
 
+// generateQR creates a qr code with the users uid on it
 function generateQR(uid) {
     QRCode.toCanvas(document.getElementById('canvas'), uid, function(error) {
         if (error) console.error(error)
