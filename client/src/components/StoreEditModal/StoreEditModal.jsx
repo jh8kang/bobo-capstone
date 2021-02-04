@@ -3,15 +3,17 @@ import './StoreEditModal.scss';
 import upArrow from '../../assets/icons/uparrow.svg';
 import defaultImage from '../../assets/images/default.jpg';
 
-export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit, onPhotoChange}) {
+export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit, previewUrl, onPhotoChange}) {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
 
 // sets default image
     let storeImage;
-    if (storeInfo.image) {
-        storeImage = storeInfo.image
+    if (previewUrl) {
+        storeImage = previewUrl;
+    } else if (storeInfo.image){
+        storeImage = storeInfo.image;
     } else {
-        storeImage = defaultImage
+        storeImage = defaultImage;
     }
 
     return (
@@ -43,7 +45,7 @@ export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit, o
                     </div>
                     <div className="edit-form__buttons">
                         <button className="edit-form__buttons__btn">Save</button>
-                        <button className="edit-form__buttons__btn"onClick={hideEdit}>Cancel</button>
+                        <button className="edit-form__buttons__btn" onClick={hideEdit}>Cancel</button>
                     </div>
                 </form>
             </section>

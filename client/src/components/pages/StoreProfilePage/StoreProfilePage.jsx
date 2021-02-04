@@ -11,16 +11,17 @@ export default function StoreProfilePage(props) {
     const [storeInfo, setStoreInfo] = useState({});
     const [pageLoader, setPageLoad] = useState(false);
     const [show, setShow] = useState(false);
-    const [fileUrl, setFileUrl] = useState(null);
+    // const [fileUrl, setFileUrl] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
 
 // variables 
     let imageUrl;
     
 // sets default image to store profile page
-    if (storeInfo.image == null) {
+    if (storeInfo.image === null) {
         imageUrl = defaultImage;
     } else {
-        imageUrl = storeInfo.image
+        imageUrl = storeInfo.image;
     }
 
     useEffect(()=> {
@@ -34,7 +35,7 @@ export default function StoreProfilePage(props) {
             })
         })
         .catch(err=> console.log(err))
-    }, [pageLoader, fileUrl])
+    }, [pageLoader,previewUrl])
 
 // logout function
     let logout =()=> {
@@ -50,17 +51,34 @@ export default function StoreProfilePage(props) {
         .then(snapshot=> {
             snapshot.forEach(doc=> {
                 if (doc.data().uid === auth.currentUser.uid) {
+                    let name = doc.data().name;
+                    let description = doc.data().description;
+                    let location = doc.data().location;
+                    let image = doc.data().image;
+
+                    if (e.target.name.value) {
+                        name = e.target.name.value
+                    }
+                    if (e.target.description.value) {
+                        description = e.target.description.value
+                    }
+                    if (e.target.location.value) {
+                        location = e.target.location.value
+                    } 
+                    if (e.target.file.value) {
+                        image = previewUrl;
+                    }
                     let storeInfo = db.collection("stores").doc(`${doc.id}`)
-                    console.log(fileUrl)
                     storeInfo.update({
-                        name: e.target.name.value,
-                        description: e.target.description.value,
-                        location: e.target.location.value,
-                        image: fileUrl,
+                        name: name,
+                        description: description,
+                        location: location,
+                        image: image,
                     })
                 }
                 setPageLoad(!pageLoader);
                 hideEdit()
+                document.getElementById('edit-form').reset();
             })
         })
         .catch(err=> console.log(err))
@@ -82,8 +100,7 @@ export default function StoreProfilePage(props) {
         var storageRef = firebase.storage().ref();
         var fileRef = storageRef.child(file.name);
         await fileRef.put(file)
-        setFileUrl(await fileRef.getDownloadURL());
-        // setPageLoad(!pageLoader)
+        setPreviewUrl(await fileRef.getDownloadURL())
     }
 
     if (storeInfo.users) {
@@ -123,7 +140,7 @@ export default function StoreProfilePage(props) {
                         <p className="store-info__value">{storeInfo.users.length}</p>
                     </div>
                 </section>
-                <StoreEditModal show={show} storeInfo={storeInfo} updateStoreInfo={updateStoreInfo} hideEdit={hideEdit} onPhotoChange={onPhotoChange}/>
+                <StoreEditModal show={show} storeInfo={storeInfo} previewUrl={previewUrl} updateStoreInfo={updateStoreInfo} hideEdit={hideEdit} onPhotoChange={onPhotoChange}/>
                 <FooterStore/>
             </div>
         )

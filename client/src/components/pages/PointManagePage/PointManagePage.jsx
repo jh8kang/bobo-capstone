@@ -114,8 +114,6 @@ export default function PointManagePage() {
                 })
             })
         }
-
-
     }
 
     let handleError = (err) => {
