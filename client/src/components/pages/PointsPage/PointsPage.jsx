@@ -5,10 +5,23 @@ import PointCard from '../../PointCard/PointCard';
 import {auth, db} from '../../../firebase';
 import {v4 as uuid} from 'uuid';
 import firebase from '../../../firebase';
+import defaultImage from '../../../assets/icons/profile.svg';
+import Header from '../../Header/Header';
 
 function PointsPage() {
     const [stores, setStores] = useState([]);
     const [storeDeleted, setStoreDeleted] = useState(null);
+    const [userInfo, setUserInfo] = useState({});
+
+// variables 
+    let imageUrl;
+    
+// sets default image to store profile page
+    if (userInfo.image === null) {
+        imageUrl = defaultImage;
+    } else {
+        imageUrl = userInfo.image;
+    }
 
     useEffect(()=> {
         db.collection('usertype')
@@ -16,7 +29,8 @@ function PointsPage() {
         .then(snapshot=> {
             snapshot.forEach(doc=> {
                 if (doc.data().uid === auth.currentUser.uid) {
-                    setStores(doc.data().stores)
+                    setStores(doc.data().stores);
+                    setUserInfo(doc.data());
                 }
             })
         })
@@ -58,15 +72,27 @@ function PointsPage() {
         .catch(err=> console.log(err))
     }
 
-    return (
-        <div>
-            <div className="points">
-                <h1 className="points__title">YOUR POINTS</h1>
-                {stores.map(store=> <PointCard store={store} key={uuid()} deleteStore={deleteStore}/>)}
+    if (userInfo.name) {
+        return (
+            <div>
+                <div className="points">
+                    <div className="points__hero">
+                        <Header userInfo={userInfo}/>
+                        <div className="points__hero__stat">
+                            <p className="points__hero__stat__text">{stores.length} stores</p>
+                        </div>
+                    </div>
+                    <div className="points__cards">
+                        <h1 className="points__title">YOUR POINTS</h1>
+                        {stores.map(store=> <PointCard store={store} key={uuid()} deleteStore={deleteStore}/>)}
+                    </div>
+                </div>
+                <Footer/>
             </div>
-            <Footer/>
-        </div>
-    )
+        )
+    }
+    return <p>loading</p>
+
 }
 
 export default PointsPage

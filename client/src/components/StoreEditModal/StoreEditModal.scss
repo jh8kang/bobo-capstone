@@ -69,11 +69,12 @@
             display: flex;
             align-content: center;
             margin-bottom: 15px;
-            background-color: $dark-main;
+            background-color: $main;
             color: white;
             width: fit-content;
             padding: 5px 10px;
             border-radius: 5px;
+            box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
         }
     }
     &__icon {
@@ -97,11 +98,9 @@
             outline: none;
             background-color: transparent;
             border: none;
-            color: $dark-main;
+            color: $main;
         }
-
     }
-
 }
 
 

@@ -13,8 +13,8 @@ class UserLoginPage extends Component {
         auth.signInWithEmailAndPassword(e.target.username.value, e.target.password.value)
         .then(user=> {
             this.props.typeHandler(user.user);
-            // sessionStorage.setItem('username', e.target.username.value);
-            // sessionStorage.setItem('password', e.target.password.value);
+            sessionStorage.setItem('username', e.target.username.value);
+            sessionStorage.setItem('password', e.target.password.value);
         })
         .catch(err=>{
             console.log(err)
@@ -23,7 +23,7 @@ class UserLoginPage extends Component {
             })
         })
     }
-
+    
     render() {
         return (
             <div className="login">
@@ -32,11 +32,9 @@ class UserLoginPage extends Component {
                     <h1 className="login__title__logo">BOBO</h1>
                     <form onSubmit={this.login} className="login-form">
                         <div className="login-form__items">
-                            {/* <label className="login-form__items__label" htmlFor="username">username: </label> */}
                             <input className="login-form__items__input" placeholder="email" type="email" id="username" name="username"/>
                         </div>
                         <div>
-                            {/* <label htmlFor="password">password: </label> */}
                             <input className="login-form__items__input" placeholder="password" type="password" id="password" name="password"/>
                         </div>
                         <p className="login-form__error-message">{this.state.error}</p>

@@ -2,7 +2,7 @@
 
 .store-home {
     height: 100vh;
-    background-color: $main;
+    background-color: #d8e1e9;
 }
 
 .store-hero {
@@ -13,22 +13,21 @@
     flex-direction: column;
     align-items: center;
     border-bottom: 1px solid $grey;
-    background-color: white;
+    background-color: $main;
     
     &__header {
         align-self: flex-end;
-
     }
     &__name {
         align-self: center;
         font-size: 3rem;
         margin-top: 30%;
-        color: $dark-main;
+        color: white;
     }
     &__collector-count {
         font-size: 30px;
         margin-top: 10%;
         font-weight: 300;
+        color: white;
     }
-
 }

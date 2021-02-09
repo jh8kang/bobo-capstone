@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import './QrCodePage.scss';
 import Footer from '../../Footer/Footer';
 import QRCode from 'qrcode'
 import {auth} from '../../../firebase';
+import {db} from '../../../firebase';
+import Header from '../../Header/Header';
 
 // generateQR creates a qr code with the users uid on it
 function generateQR(uid) {
@@ -11,8 +13,10 @@ function generateQR(uid) {
     })
 }
 
-class QrCodePage extends Component {
-    componentDidMount() {
+function QrCodePage() {
+    let [userInfo, setUserInfo] = useState({});
+
+    useEffect(()=> {
         let useruid;
         auth.onAuthStateChanged(function(user){
             if (user){
@@ -23,13 +27,24 @@ class QrCodePage extends Component {
                 console.log('there is no user')
             }
         })
-    }
+        db.collection('usertype')
+        .get()
+        .then(snapshot=> {
+            snapshot.forEach(doc=> {
+                if (doc.data().uid === auth.currentUser.uid) {
+                    setUserInfo(doc.data())
+                }
+            })
+        })
+        .catch(err=> console.log(err))
 
-    render() {
+    }, [])
+
+    if (userInfo) {
         return (
             <div className="code-page">
+                <Header userInfo={userInfo}/>
                 <div className="code-page__container">
-                    <h1 className="code-page__title">SCAN YOUR CODE</h1>
                     <div className="code-page__qr">
                         <canvas id="canvas" className="canvas"></canvas>
                         <Footer/>
@@ -38,6 +53,8 @@ class QrCodePage extends Component {
             </div>
         )
     }
+    return <p>loading</p>
+    
 }
 
 export default QrCodePage

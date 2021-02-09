@@ -4,6 +4,9 @@
 .item {
     padding: 10px;
     display: flex;
+    &:hover {
+        background-color: #f2f7f8;
+    }
     &__imgBox {
         overflow:hidden;
         min-width: 100px;
@@ -22,10 +25,11 @@
         justify-content: space-between;
         &__storename {
             font-size: 12px;
+            color: #003f88;
         }
         &__des {
             font-size: 10px;
-            color: #cecece;
+            color: #85898c;
         }
         &__btn {
             width: fit-content;

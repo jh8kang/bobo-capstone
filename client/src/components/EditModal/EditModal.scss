@@ -1,14 +1,5 @@
 @import '../../partials/global';
 
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-}
-
 .display-block {
     display: block;
 }
@@ -22,7 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: white;
+    background-color: #d8e1e9;
     padding-top: 10%;
     padding-bottom: 10%;
     width: 90vw;
@@ -33,6 +24,7 @@
     border-radius: 10px;
     &__label {
         font-size: 13px;
+        margin-right: 10px;
     }
     &__input {
         padding: 5px 10px;
@@ -45,12 +37,18 @@
             border: 1px solid $dark-main;
         }
     }
+    &__location {
+        width: 80%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
     &__profile {
-        border: 3px solid black;
+        border: 1px solid white;
         border-radius: 10px;
         width: 100px;
         height: 100px;
-        opacity: 0.1;
+        object-fit: cover;
         margin-bottom: 15px;
     }
     &__buttons {
@@ -62,7 +60,7 @@
             width: 45%;
             background-color: white;
             border: none;
-            color: $dark-main;
+            color: $main;
         }
     }
 }

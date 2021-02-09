@@ -4,6 +4,7 @@ import FooterStore from '../../FooterStore/FooterStore';
 import PointAdderModal from '../../PointAdderModal/PointAdderModal';
 import {db, auth} from '../../../firebase';
 import QrReader from 'react-qr-scanner';
+import Header from '../../Header/Header';
 
 
 
@@ -11,6 +12,7 @@ export default function PointManagePage() {
     let [show, setShow] = useState(false);
     let [userInfo, setUserInfo] = useState({});
     let [storeId, setStoreId] = useState({});
+    let [storeInfo, setStoreInfo] = useState({});
     let [pageLoader, setPageLoader] = useState(false);
     let [currentPoints, setCurrentPoints] = useState(0);
     let [restOfPoints, setRestOfPoints] = useState(0);
@@ -29,6 +31,7 @@ export default function PointManagePage() {
             snapshot.forEach(doc=> {
                 if (doc.data().uid === auth.currentUser.uid) {
                     setStoreId(doc.id)
+                    setStoreInfo(doc.data());
                 }
             })
         })
@@ -122,21 +125,23 @@ export default function PointManagePage() {
 
     return (
         <div className="point-manager">
-            <h1 className="point-manager__title">Point Manager</h1>
-            <form onSubmit={showUserProfile} id="userSearchBar" className="point-form">
-                <input className="point-form__search-bar" type="text" placeholder="Search user by username" id="searchUser" name="searchUser"/>
-            </form>
-            <div className="point-manager__scanner">
-                <QrReader
-                    delay={delay}
-                    style={previewStyle}
-                    onError={handleError}
-                    onScan={handleScan}
-                />
+            <Header userInfo={storeInfo}/>
+            <div className="point-manager__content">
+                <h1 className="point-manager__title">Point Manager</h1>
+                <form onSubmit={showUserProfile} id="userSearchBar" className="point-form">
+                    <input className="point-form__search-bar" type="text" placeholder="Search user by username" id="searchUser" name="searchUser"/>
+                </form>
+                <div className="point-manager__scanner">
+                    <QrReader
+                        delay={delay}
+                        style={previewStyle}
+                        onError={handleError}
+                        onScan={handleScan}
+                    />
+                </div>
+                    <p>{result}</p>
             </div>
-                <p>{result}</p>
             <PointAdderModal show={show} restOfPoints={restOfPoints} currentPoints={currentPoints} currentPointsHandler={currentPointsHandler}hideUserProfile={hideUserProfile} userInfo={userInfo} storeId={storeId} pageLoadHandler={pageLoadHandler}/>
-            
             <FooterStore/>
         </div>
     )

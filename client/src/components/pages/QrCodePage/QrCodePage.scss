@@ -4,22 +4,13 @@
     &__container {
         display: flex;
         flex-direction: column;
-        margin: 40px 3% 0px 3%;
+        margin: 0px 3% 0px 3%;
         height: 100vh;
-        border: 1px solid $main;
+        border-top: 1px solid $main;
+        border-bottom: 1px solid $main;
         border-radius: 5px;
+        padding-top: 80px;
 
-    }
-    &__title {
-        font-size: 1.5rem;
-        font-weight: normal;
-        position: relative;
-        top: -10px;
-        left: 10px;
-        background-color: white;
-        width: fit-content;
-        padding: 0px 5px;
-        color: $dark-main;
     }
     &__qr {
         display: flex;
@@ -28,12 +19,6 @@
         padding-top: 50%;
         width: 100%;
         height: fit-content;
-
     }
-
-
-
-
-
 }
 

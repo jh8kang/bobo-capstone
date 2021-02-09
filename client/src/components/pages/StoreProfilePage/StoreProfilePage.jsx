@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import editBtn from '../../../assets/icons/edit.svg';
 import StoreEditModal from '../../StoreEditModal/StoreEditModal';
 import defaultImage from '../../../assets/images/default.jpg';
+import Header from '../../Header/Header';
 
 export default function StoreProfilePage(props) {
     const [storeInfo, setStoreInfo] = useState({});
@@ -106,39 +107,46 @@ export default function StoreProfilePage(props) {
     if (storeInfo.users) {
         return (
             <div className="store-profile">
-                <section className="profile__hero">
+                <Header userInfo={storeInfo}/>
+                {/* <section className="profile__hero">
                     <div className="profile__header">
                         <button onClick={logout} className="store__logout">LOGOUT</button>
                     </div>
                     <p className="store__name">{storeInfo.name.toUpperCase()}</p>
-                </section>
+                </section> */}
                 <section className="profile__store-info">
-                    <img className="icon-edit"src={editBtn} onClick={showEdit} alt="edit"/>
-                    <img className="store-info__img"src={imageUrl} alt="store profile"/>
-                    <div className="store-info__container">
-                        <p className="store-info__label">STORE NAME:</p>
-                        <p className="store-info__value">{storeInfo.name}</p>
+                    <div className="profile__hero">
+                        <img className="store-info__img"src={imageUrl} alt="store profile"/>
+                        <p className="profile__hero__text">{storeInfo.name}</p>
                     </div>
-                    <div className="store-info__container">
-                        <p className="store-info__label">USERNAME:</p>
-                        <p className="store-info__value">{storeInfo.username}</p>
-                    </div>
-                    <div className="store-info__container">
-                        <p className="store-info__label">DESCRIPTION:</p>
-                        <p className="store-info__value">{storeInfo.description}</p>
-                    </div>
-                    <div className="store-info__container">
-                        <p className="store-info__label">LOCATION:</p>
-                        <p className="store-info__value">{storeInfo.location}</p>
-                    </div>
-                    <div className="store-info__container">
-                        <p className="store-info__label">MAX POINT:</p>
-                        <p className="store-info__value">{storeInfo.pointmax}</p>
-                    </div>
-                    <div className="store-info__container">
-                        <p className="store-info__label">NUM OF COLLECTORS:</p>
-                        <p className="store-info__value">{storeInfo.users.length}</p>
-                    </div>
+                    <section className="store-info__content">
+                        <img className="icon-edit"src={editBtn} onClick={showEdit} alt="edit"/>
+                        <div className="store-info__container">
+                            <p className="store-info__label">STORE NAME:</p>
+                            <p className="store-info__value">{storeInfo.name}</p>
+                        </div>
+                        <div className="store-info__container">
+                            <p className="store-info__label">USERNAME:</p>
+                            <p className="store-info__value">{storeInfo.username}</p>
+                        </div>
+                        <div className="store-info__container">
+                            <p className="store-info__label">DESCRIPTION:</p>
+                            <p className="store-info__value">{storeInfo.description}</p>
+                        </div>
+                        <div className="store-info__container">
+                            <p className="store-info__label">LOCATION:</p>
+                            <p className="store-info__value">{storeInfo.location}</p>
+                        </div>
+                        <div className="store-info__container">
+                            <p className="store-info__label">MAX POINT:</p>
+                            <p className="store-info__value">{storeInfo.pointmax}</p>
+                        </div>
+                        <div className="store-info__container">
+                            <p className="store-info__label">NUM OF COLLECTORS:</p>
+                            <p className="store-info__value">{storeInfo.users.length}</p>
+                        </div>
+                        <button onClick={logout} className="store__logout profile__logout">LOGOUT</button>
+                    </section>
                 </section>
                 <StoreEditModal show={show} storeInfo={storeInfo} previewUrl={previewUrl} updateStoreInfo={updateStoreInfo} hideEdit={hideEdit} onPhotoChange={onPhotoChange}/>
                 <FooterStore/>

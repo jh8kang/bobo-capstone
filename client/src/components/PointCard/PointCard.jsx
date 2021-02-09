@@ -23,7 +23,7 @@ export default function PointCard(props) {
     return (
         <div className="pointcard">
             <div>
-                <h1>{store.name}</h1>
+                <h1 className="pointcard__name">{store.name}</h1>
                 <div>
                     {userPoints.map(point=> <img className="pointcard__star" src={yellowStar} key={uuid()} alt="yellow star"/>)}
                     {restOfPoints.map(point=> <img className="pointcard__star" src={whiteStar} key={uuid()} alt="white star"/>)}
