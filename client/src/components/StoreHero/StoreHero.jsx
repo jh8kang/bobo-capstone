@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './StoreHero.scss';
 import {db, auth} from '../../firebase';
+import Header from '../Header/Header';
 
 export default function StoreHero(props) {
     let [storeInfo, setStoreInfo] = useState({});
@@ -28,6 +29,7 @@ export default function StoreHero(props) {
 
         return (
             <div className="store-home">
+                <Header userInfo={storeInfo}/>
                 <div className="store-hero">
                     <p className="store-hero__name">{storeInfo.name}</p>
                     <p className="store-hero__collector-count">{usersCount} {collectors} </p>

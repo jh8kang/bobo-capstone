@@ -1,7 +1,7 @@
 @import '../../partials/global';
 
 .modal-main {
-    background-color: $main;
+    background-color: #d8e1e9;
     &__points {
         display: flex;
         justify-content: center;
@@ -25,7 +25,7 @@
             outline: none;
             background-color: transparent;
             border: none;
-            color: $dark-main;
+            color: $main;
         }
     }
 }

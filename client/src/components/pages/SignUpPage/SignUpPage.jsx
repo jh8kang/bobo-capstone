@@ -7,17 +7,18 @@ class SignUpPage extends Component {
     state = {
         error:"",
         useruid: "",
-        image: null,
     }
 
 // adds collector to firestore
     signup = (e)=>  {
+        console.log(e.target.name.value)
         e.preventDefault();
         auth.createUserWithEmailAndPassword(e.target.username.value, e.target.password.value)
         .then(user=> {
             this.setState({
                 useruid: user.user.uid
             })
+
             db.collection("usertype").add({
                 name: e.target.name.value,
                 username: e.target.username.value,

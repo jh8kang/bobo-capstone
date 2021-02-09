@@ -1,6 +1,5 @@
 @import '../../partials/global';
 
-
 footer {
     position: fixed;
     bottom: 0;
@@ -12,12 +11,6 @@ footer {
     border-top: 1px solid #e5e5e5;
     z-index: 1;
     background-color: white;
-
-}
-
-.navBox {
-
-
 }
 
 .icon {
@@ -38,14 +31,11 @@ footer {
         width: 25px;
         height: 25px;
         background-size: cover;
-
     }
     &__qr {
         background-image: url('../../assets/icons/qrcode.svg');
         width: 20px;
         height: 20px;
         background-size: cover;
-
     }
-
 }

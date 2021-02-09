@@ -5,35 +5,15 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    padding: 5%;
     &__header {
         width: 100%;
         display: flex;
         flex-direction: column;
         &__logout {
             font-size: 12px;
-            align-self: flex-end;
-            margin-bottom: 10px;
+            margin-top: 70px;
             border: none;
             background: none;
-        }
-        &__edit {
-            width: 20px;
-            height: 20px;
-            align-self: flex-end;
-            margin: 5px;
-
-        }
-        &__title {
-            align-self: flex-start;
-            font-weight: normal;
-            font-size: 1.5rem;
-            color: $dark-main;
-            position: relative;
-            top:-40px;
-            left: 10px;
-            background-color: white;
-            padding: 0px 10px;
         }
     }
     &__info {
@@ -41,17 +21,36 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        border: 1px solid $main;
         border-radius: 5px;
         height: 100vh;
-
+        padding: 3%;
+        padding-top: 70px;
+        background-color: #d8e1e9;
+        &__head {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            &__edit {
+                width: 20px;
+                height: 20px;
+                align-self: flex-end;
+                margin: 5px;
+            }
+            &__title {
+                align-self: flex-start;
+                font-weight: normal;
+                font-size: 1.5rem;
+                color: $dark-main;
+                background-color: white;
+            }
+        }
         &__img {
-            border: 3px solid black;
+            border: 1px solid white;
             border-radius: 10px;
-            width: 100px;
-            height: 100px;
-            opacity: 0.1;
+            width: 150px;
+            height: 150px;
             margin-top: 20%;
+            object-fit: cover;
         }
         &__name {
             margin-bottom: 50px;
@@ -61,7 +60,7 @@
             margin-bottom: 10px;
             width: 200px;
             &--value {
-                color: $dark-main;
+                color: #3168b0;
             }
         }
     }   

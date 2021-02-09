@@ -4,9 +4,10 @@
     border-bottom: 1px solid $grey;
     padding: 10px;
     padding-top: 60px;
+    background-color: #d8e1e9;
     &__title {
         font-weight: 500px;
-        color: $dark-main;
+        color: #003f88;
     }
 }
 .cards {
@@ -16,20 +17,3 @@
     overflow-x: auto;
 
 }
-
-.card {
-    padding: 10px 10px 0px 10px;
-    &__imgBox {
-        overflow:hidden;
-        min-width: 100px;
-        min-height: 100px;
-    }
-    &__img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 5px;
-    }
-
-}
-

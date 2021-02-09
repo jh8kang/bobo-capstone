@@ -1,12 +1,11 @@
 @import '../../../partials/global';
 
 .point-manager {
-    padding: 3%;
     &__title {
         font-weight: normal;
         font-size: 1.5rem;
-        color: $dark-main;
-        margin-top: 10%;
+        color: #006da3;
+        padding-top: 80px;
         margin-bottom: 15px;
     }
     &__scanner {
@@ -16,7 +15,9 @@
         padding: 10px;
         border: 1px solid $main;
         border-radius: 5px;
-
+    }
+    &__content {
+        padding: 3%;
     }
 }
 
@@ -28,7 +29,5 @@
         outline: none;
         border: 1px solid $main;
         border-radius: 5px;
-
     }
-
 }
