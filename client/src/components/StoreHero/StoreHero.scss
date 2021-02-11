@@ -14,10 +14,7 @@
     align-items: center;
     border-bottom: 1px solid $grey;
     background-color: $main;
-    
-    &__header {
-        align-self: flex-end;
-    }
+
     &__name {
         align-self: center;
         font-size: 3rem;

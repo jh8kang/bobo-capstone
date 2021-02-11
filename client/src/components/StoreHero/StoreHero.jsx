@@ -28,12 +28,13 @@ export default function StoreHero(props) {
         }
 
         return (
-            <div className="store-home">
+            <div>
                 <Header userInfo={storeInfo}/>
                 <div className="store-hero">
                     <p className="store-hero__name">{storeInfo.name}</p>
                     <p className="store-hero__collector-count">{usersCount} {collectors} </p>
                 </div>
+
             </div>
         )
     } else {
