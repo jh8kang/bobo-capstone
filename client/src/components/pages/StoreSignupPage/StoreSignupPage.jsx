@@ -6,6 +6,7 @@ import {Redirect} from 'react-router-dom';
 
 export default function StoreSignupPage() {
     let [useruid, setUserUid] = useState("");
+    let [error, setError] = useState("");
 
 // store to firestore
     let signup =  (e)=>  {
@@ -23,10 +24,12 @@ export default function StoreSignupPage() {
                 users: [],
                 type: "storekeeper",
                 image: null,
+                tracker: [0,0,0,0,0,0,0]
             })
         })
         .catch(err=>{
-            console.log(err)
+            console.log(err.message)
+            setError(err.message)
         })
 
     }
@@ -38,8 +41,8 @@ export default function StoreSignupPage() {
             <div className="signup__container">
                 <h1 className="signup__title">Sign Up To</h1>
                 <h1 className="signup__title__logo">BOBO</h1>
+                <p>{error}</p>
                 <form onSubmit={signup} className="signup-form">
-                    
                         <input className="signup-form__input" placeholder="Store Name" type="text" id="name" name="name"/>
                         <textarea className="signup-form__input" placeholder="Any text that clients will see..." id="description" name="description"/>
                         <input className="signup-form__input" placeholder="email" type="email" id="username" name="username"/>

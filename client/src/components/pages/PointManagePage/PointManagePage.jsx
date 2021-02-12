@@ -39,14 +39,14 @@ export default function PointManagePage() {
     }, [pageLoader])
 
 
-// closes the edit modal
+// closes the usermodal
     let hideUserProfile = () => {
         setShow(false);
         setUserInfo({})
         document.getElementById("userSearchBar").reset();
     }
 
-// opens up the edit modal
+// opens up the user modal
     let showUserProfile = (e) => {
         e.preventDefault();
         setShow(true)
@@ -87,6 +87,24 @@ export default function PointManagePage() {
                     store.points +=1
                     db.collection("usertype").doc(`${doc.id}`).update({
                         stores: data
+                    })
+                }
+            })
+        })
+
+        db.collection("stores")
+        .get()
+        .then(snapshot=> {
+            snapshot.forEach(doc=> {
+                if (doc.data().uid === auth.currentUser.uid) {
+                    let tracker = doc.data().tracker
+                    let date = new Date();
+                    let dayOfWeek = date.getDay();
+                    console.log(tracker[dayOfWeek - 1])
+                    tracker[dayOfWeek - 1] +=1
+                    console.log(tracker[dayOfWeek - 1])
+                    db.collection('stores').doc(`${doc.id}`).update({
+                        tracker: tracker,
                     })
                 }
             })
