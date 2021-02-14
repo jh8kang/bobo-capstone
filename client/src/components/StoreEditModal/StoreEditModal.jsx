@@ -45,9 +45,9 @@ export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit, f
                     </div>
                     <div className="edit-form__buttons">
                         <button className="edit-form__buttons__btn">Save</button>
-                        <button className="edit-form__buttons__btn" onClick={hideEdit}>Cancel</button>
                     </div>
                 </form>
+                        <button className="edit-form__buttons__btn" onClick={hideEdit}>Cancel</button>
             </section>
         </div>
     )
