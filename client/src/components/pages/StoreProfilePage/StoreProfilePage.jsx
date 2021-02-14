@@ -14,16 +14,9 @@ export default function StoreProfilePage(props) {
     const [show, setShow] = useState(false);
     // const [fileUrl, setFileUrl] = useState(null);
     const [fileUrl, setFileUrl] = useState(null);
+    let [image, setImage] = useState(null);
 
-// variables 
-    let imageUrl;
-    
-// sets default image to store profile page
-    if (storeInfo.image === null) {
-        imageUrl = defaultImage;
-    } else {
-        imageUrl = storeInfo.image;
-    }
+
 
     useEffect(()=> {
         db.collection('stores')
@@ -33,10 +26,25 @@ export default function StoreProfilePage(props) {
                 if (doc.data().uid === auth.currentUser.uid) {
                     setStoreInfo(doc.data())
                 }
+                if (doc.data().image === null) {
+                    setImage(defaultImage);
+                } else {
+                    setImage(doc.data().image);
+                }
             })
         })
         .catch(err=> console.log(err))
-    }, [pageLoader,fileUrl])
+    }, [pageLoader])
+
+// // variables 
+//     let imageUrl;
+    
+// // sets default image to store profile page
+//     if (storeInfo.image === null) {
+//         imageUrl = defaultImage;
+//     } else {
+//         imageUrl = storeInfo.image;
+//     }
 
 // logout function
     let logout =()=> {
@@ -47,6 +55,10 @@ export default function StoreProfilePage(props) {
 // updates store info on form submit
     let updateStoreInfo = (e)=> {
         e.preventDefault();
+        let eName = e.target.name.value;
+        let eDescription = e.target.description.value;
+        let eLocation = e.target.location.value;
+        let eImage = e.target.file.value;
         db.collection('stores')
         .get()
         .then(snapshot=> {
@@ -56,16 +68,17 @@ export default function StoreProfilePage(props) {
                     let description = doc.data().description;
                     let location = doc.data().location;
                     let image = doc.data().image;
-                    if (e.target.name.value) {
-                        name = e.target.name.value
+                    if (eName) {
+                        name = eName;
+                        console.log(eName);
                     }
-                    if (e.target.description.value) {
-                        description = e.target.description.value
+                    if (eDescription !== "") {
+                        description = eDescription;
                     }
-                    if (e.target.location.value) {
-                        location = e.target.location.value
+                    if (eLocation !== "") {
+                        location = eLocation
                     } 
-                    if (e.target.file.value) {
+                    if (eImage !== "") {
                         image = fileUrl;
                     }
                     let storeInfo = db.collection("stores").doc(`${doc.id}`)
@@ -84,9 +97,10 @@ export default function StoreProfilePage(props) {
         .catch(err=> console.log(err))
     }
 
-// closes the edit modal
+// closes the edit modal and resets fileUrl
     let hideEdit = () => {
         setShow(false);
+        setFileUrl(null);
     }
 
 // opens up the edit modal
@@ -96,26 +110,25 @@ export default function StoreProfilePage(props) {
 
 // saves image from edit modal 
     let onPhotoChange = async (e) => {
-        var file = e.target.files[0];
-        var storageRef = firebase.storage().ref();
-        var fileRef = storageRef.child(file.name);
-        await fileRef.put(file)
-        setFileUrl(await fileRef.getDownloadURL())
+        if (e.target.files[0]) {
+            var file = e.target.files[0];
+            var storageRef = firebase.storage().ref();
+            var fileRef = storageRef.child(file.name);
+            await fileRef.put(file)
+            setFileUrl(await fileRef.getDownloadURL());
+        }
     }
 
-    if (storeInfo.users) {
+    if (image === null) {
+        return <p>loading page...</p>
+    } else {
+        // console.log("re-render")
         return (
             <div className="store-profile">
                 <Header userInfo={storeInfo}/>
-                {/* <section className="profile__hero">
-                    <div className="profile__header">
-                        <button onClick={logout} className="store__logout">LOGOUT</button>
-                    </div>
-                    <p className="store__name">{storeInfo.name.toUpperCase()}</p>
-                </section> */}
                 <section className="profile__store-info">
                     <div className="profile__hero">
-                        <img className="store-info__img"src={imageUrl} alt="store profile"/>
+                        <img className="store-info__img"src={image} alt="store profile"/>
                         <p className="profile__hero__text">{storeInfo.name}</p>
                     </div>
                     <section className="store-info__content">
@@ -142,7 +155,7 @@ export default function StoreProfilePage(props) {
                         </div>
                         <div className="store-info__container">
                             <p className="store-info__label">NUM OF COLLECTORS:</p>
-                            <p className="store-info__value">{storeInfo.users.length}</p>
+                            {/* <p className="store-info__value">{storeInfo.users.length}</p> */}
                         </div>
                         <button onClick={logout} className="store__logout profile__logout">LOGOUT</button>
                     </section>
@@ -151,7 +164,7 @@ export default function StoreProfilePage(props) {
                 <FooterStore/>
             </div>
         )
+
     }
-    return <p>loading page...</p>
 
 }
