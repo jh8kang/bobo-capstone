@@ -19,6 +19,7 @@ export default function PointManagePage() {
     let [delay] = useState(100);
     let [result, setResult] = useState("no result"); 
     let [date, setDate] = useState(new Date());
+    let [error, setError] = useState("");
 
     const previewStyle = {
         height: 240,
@@ -64,6 +65,8 @@ export default function PointManagePage() {
                             setRestOfPoints(restPoints)
                         }
                     })
+                } else {
+                    setError("user doesn't exist");
                 }
             })
         })
@@ -74,7 +77,7 @@ export default function PointManagePage() {
         setPageLoader(!pageLoader)
     }
 
-// Adds a point to state and to the database
+// Adds a point to the client and updates line graph
     let currentPointsHandler = ()=> {
         setCurrentPoints(currentPoints + 1);
         setRestOfPoints(restOfPoints - 1);
@@ -98,8 +101,6 @@ export default function PointManagePage() {
         .then(snapshot=> {
             snapshot.forEach(doc=> {
                 if (doc.data().uid === auth.currentUser.uid) {
-                    console.log(doc.data().timetracker[3]);
-
                     if ((doc.data().timetracker[3] !== 1) && (date.getDay() == 1)) {
                         let tracker = [0,0,0,0,0,0,0]
                         let date = new Date();
@@ -108,12 +109,18 @@ export default function PointManagePage() {
                         db.collection('stores').doc(`${doc.id}`).update({
                             tracker: tracker,
                         })
-
                     } else {
                         let tracker = doc.data().tracker
                         let date = new Date();
                         let dayOfWeek = date.getDay();
-                        tracker[dayOfWeek - 1] +=1;
+
+                        if (dayOfWeek == 0) {
+                            tracker[6] +=1;
+
+                        } else {
+                            tracker[dayOfWeek - 1] +=1;
+                        }
+                        
                         db.collection('stores').doc(`${doc.id}`).update({
                             tracker: tracker,
                             timetracker: [date.getFullYear(), date.getMonth(), date.getDate(), date.getDay()]
@@ -125,6 +132,7 @@ export default function PointManagePage() {
         pageLoadHandler();
     }
 
+// opens up user modal through QRcode
     let handleScan = (data)=> {
         // setResult(data)
         setShow(true)
@@ -162,6 +170,7 @@ export default function PointManagePage() {
                 <form onSubmit={showUserProfile} id="userSearchBar" className="point-form">
                     <input className="point-form__search-bar" type="text" placeholder="Search user by username" id="searchUser" name="searchUser"/>
                 </form>
+                <p>{error}</p>
                 <div className="point-manager__scanner">
                     <QrReader
                         delay={delay}
