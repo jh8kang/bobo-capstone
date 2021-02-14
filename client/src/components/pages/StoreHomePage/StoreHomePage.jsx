@@ -2,23 +2,38 @@ import React, {Component, useEffect, useState} from 'react';
 import FooterStore from '../../FooterStore/FooterStore';
 import StoreHero from '../../StoreHero/StoreHero';
 import './StoreHomePage.scss';
-// import {Line} from 'react-chartjs-2';
 import Chart from 'chart.js';
 import {db, auth} from '../../../firebase';
+
+function timeCalculator(seconds) {
+    console.log(seconds)
+    // if (seconds) {
+        // let nanosec = nano;
+        // console.log("nano", nanosec);
+        // let sec = seconds;
+        // console.log("sec",sec);
+        // let min = seconds/60;
+        // console.log("min", min);
+        // let hours = min/60;
+        // console.log("hours", hours);
+        // let days = hours/24;
+        // console.log("days", days);
+    // }
+}
 
 
 function StoreHomePage() {
     let [data, setData] = useState([]);
+    let [date, setDate] = useState(new Date());
+    let [prevDate, setPrevDate] = useState(null);
 
     useEffect(()=> {
-
         db.collection('stores')
         .get()
         .then(snapshot=> {
             snapshot.forEach(doc=> {
                 if (doc.data().uid === auth.currentUser.uid) {
                     setData(doc.data().tracker)
-
                     const chart = document.getElementById("lineChart");
                     if (chart) {
                         let lineChart = new Chart(chart, {
@@ -27,9 +42,8 @@ function StoreHomePage() {
                                 labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                                 datasets: [
                                     {
-                                        label: "My First dataset",
                                         fill: false,
-                                        lineTension: 0.1,
+                                        lineTension: 0.5,
                                         backgroundColor: "rgba(75, 192, 192, 0.4)",
                                         borderColor: "rgba(75, 192, 192, 1)",
                                         borderCapStyle: 'butt',
@@ -47,6 +61,24 @@ function StoreHomePage() {
                             options: {
                                 legend: {
                                     display: false,
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            suggestedMin: 0,
+                                            stepSize: 1,
+                                            beginAtZero:true,
+                                        },
+                                        gridLines: {
+                                            // display: false,
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        gridLines: {
+                                            // display: false,
+                                            // drawBorder: true,
+                                        }
+                                    }]
                                 }
                             }
                         })
@@ -56,16 +88,17 @@ function StoreHomePage() {
             })
         })
         .catch(err=> console.log(err))
-
-
     }, []) 
     
     return (
         <div>
             <StoreHero/>
             <div className="store-charts">
-                <canvas id="lineChart" className="lineChart" width="300" height="200"></canvas>
-
+                <div className="store-charts__title">
+                    <p className="store-charts__title__text">This week's overview</p>
+                    <p className="store-charts__title__text store-charts__title__text--sub">Amount of points given out</p>
+                </div>
+                <canvas id="lineChart" className="lineChart" width="300" height="170"></canvas>
             </div>
             <FooterStore/>
         </div>

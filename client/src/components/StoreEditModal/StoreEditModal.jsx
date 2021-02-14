@@ -3,13 +3,13 @@ import './StoreEditModal.scss';
 import upArrow from '../../assets/icons/uparrow.svg';
 import defaultImage from '../../assets/images/default.jpg';
 
-export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit, previewUrl, onPhotoChange}) {
+export default function EditModal({show, storeInfo, updateStoreInfo, hideEdit, fileUrl, onPhotoChange}) {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
 
 // sets default image
     let storeImage;
-    if (previewUrl) {
-        storeImage = previewUrl;
+    if (fileUrl) {
+        storeImage = fileUrl;
     } else if (storeInfo.image){
         storeImage = storeInfo.image;
     } else {

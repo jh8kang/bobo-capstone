@@ -18,6 +18,7 @@ export default function PointManagePage() {
     let [restOfPoints, setRestOfPoints] = useState(0);
     let [delay] = useState(100);
     let [result, setResult] = useState("no result"); 
+    let [date, setDate] = useState(new Date());
 
     const previewStyle = {
         height: 240,
@@ -97,15 +98,27 @@ export default function PointManagePage() {
         .then(snapshot=> {
             snapshot.forEach(doc=> {
                 if (doc.data().uid === auth.currentUser.uid) {
-                    let tracker = doc.data().tracker
-                    let date = new Date();
-                    let dayOfWeek = date.getDay();
-                    console.log(tracker[dayOfWeek - 1])
-                    tracker[dayOfWeek - 1] +=1
-                    console.log(tracker[dayOfWeek - 1])
-                    db.collection('stores').doc(`${doc.id}`).update({
-                        tracker: tracker,
-                    })
+                    console.log(doc.data().timetracker[3]);
+
+                    if ((doc.data().timetracker[3] !== 1) && (date.getDay() == 1)) {
+                        let tracker = [0,0,0,0,0,0,0]
+                        let date = new Date();
+                        let dayOfWeek = date.getDay();
+                        tracker[dayOfWeek - 1] +=1;
+                        db.collection('stores').doc(`${doc.id}`).update({
+                            tracker: tracker,
+                        })
+
+                    } else {
+                        let tracker = doc.data().tracker
+                        let date = new Date();
+                        let dayOfWeek = date.getDay();
+                        tracker[dayOfWeek - 1] +=1;
+                        db.collection('stores').doc(`${doc.id}`).update({
+                            tracker: tracker,
+                            timetracker: [date.getFullYear(), date.getMonth(), date.getDate(), date.getDay()]
+                        })
+                    }
                 }
             })
         })

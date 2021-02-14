@@ -55,6 +55,8 @@
         width: 90%;
         margin-bottom: 10px;
         border-radius: 5px;
+        object-fit: cover;
+        height: 230px;
         &:hover {
             opacity: 0.7;
         }
