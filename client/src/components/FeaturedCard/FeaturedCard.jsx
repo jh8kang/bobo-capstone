@@ -17,7 +17,7 @@ export default function FeaturedCard({store}) {
         storeImage = defaultImage
     }
 
-    // clickHandler connects usertype and stores databases - Added store to users stores list and user to store users list 
+// clickHandler connects usertype and stores databases - Added store to users stores list and user to store users list 
     let clickHandler = () => {
         db.collection('usertype')
         .get()

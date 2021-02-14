@@ -11,6 +11,7 @@ export default function StoreSignupPage() {
 // store to firestore
     let signup =  (e)=>  {
         e.preventDefault();
+        let date = new Date();
         auth.createUserWithEmailAndPassword(e.target.username.value, e.target.password.value)
         .then(user=> {
             setUserUid(user.user.uid)
@@ -24,7 +25,8 @@ export default function StoreSignupPage() {
                 users: [],
                 type: "storekeeper",
                 image: null,
-                tracker: [0,0,0,0,0,0,0]
+                tracker: [0,0,0,0,0,0,0],
+                timetracker: [date.getFullYear(), date.getMonth(), date.getDate(), date.getDay()]
             })
         })
         .catch(err=>{

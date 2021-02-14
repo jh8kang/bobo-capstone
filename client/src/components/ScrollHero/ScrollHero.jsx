@@ -30,6 +30,23 @@ function ScrollHero({stores, pageLoadHandler}) {
         storesList = newList;
     } 
 
+// returns all stores when there is less than 5 stores
+    if (stores) {
+        if (stores.length < 5) {
+            return (
+                <div className="hero">
+                    <p className="hero__title">Featured</p>
+                    <div className="cards">
+                        {stores.map(store => {
+                            return <FeaturedCard store={store} key={uuid()}/>
+                        })}  
+                    </div>
+                </div>
+            ) 
+        }
+    } 
+
+// returns 5 stores with most collectors
     if (storesList) {
         return (
             <div className="hero">

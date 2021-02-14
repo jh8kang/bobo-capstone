@@ -13,7 +13,7 @@ export default function StoreProfilePage(props) {
     const [pageLoader, setPageLoad] = useState(false);
     const [show, setShow] = useState(false);
     // const [fileUrl, setFileUrl] = useState(null);
-    const [previewUrl, setPreviewUrl] = useState(null);
+    const [fileUrl, setFileUrl] = useState(null);
 
 // variables 
     let imageUrl;
@@ -36,7 +36,7 @@ export default function StoreProfilePage(props) {
             })
         })
         .catch(err=> console.log(err))
-    }, [pageLoader,previewUrl])
+    }, [pageLoader,fileUrl])
 
 // logout function
     let logout =()=> {
@@ -56,7 +56,6 @@ export default function StoreProfilePage(props) {
                     let description = doc.data().description;
                     let location = doc.data().location;
                     let image = doc.data().image;
-
                     if (e.target.name.value) {
                         name = e.target.name.value
                     }
@@ -67,7 +66,7 @@ export default function StoreProfilePage(props) {
                         location = e.target.location.value
                     } 
                     if (e.target.file.value) {
-                        image = previewUrl;
+                        image = fileUrl;
                     }
                     let storeInfo = db.collection("stores").doc(`${doc.id}`)
                     storeInfo.update({
@@ -101,7 +100,7 @@ export default function StoreProfilePage(props) {
         var storageRef = firebase.storage().ref();
         var fileRef = storageRef.child(file.name);
         await fileRef.put(file)
-        setPreviewUrl(await fileRef.getDownloadURL())
+        setFileUrl(await fileRef.getDownloadURL())
     }
 
     if (storeInfo.users) {
@@ -148,7 +147,7 @@ export default function StoreProfilePage(props) {
                         <button onClick={logout} className="store__logout profile__logout">LOGOUT</button>
                     </section>
                 </section>
-                <StoreEditModal show={show} storeInfo={storeInfo} previewUrl={previewUrl} updateStoreInfo={updateStoreInfo} hideEdit={hideEdit} onPhotoChange={onPhotoChange}/>
+                <StoreEditModal show={show} storeInfo={storeInfo} fileUrl={fileUrl} updateStoreInfo={updateStoreInfo} hideEdit={hideEdit} onPhotoChange={onPhotoChange}/>
                 <FooterStore/>
             </div>
         )
