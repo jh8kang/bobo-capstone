@@ -14,7 +14,17 @@ export default function StoreProfilePage(props) {
     const [show, setShow] = useState(false);
     // const [fileUrl, setFileUrl] = useState(null);
     const [fileUrl, setFileUrl] = useState(null);
-    let [image, setImage] = useState(null);
+    // let [image, setImage] = useState(null);
+
+// variables 
+    let imageUrl;
+    
+// sets default image to store profile page
+    if (storeInfo.image === null) {
+        imageUrl = defaultImage;
+    } else {
+        imageUrl = storeInfo.image;
+    }
 
 
 
@@ -26,25 +36,11 @@ export default function StoreProfilePage(props) {
                 if (doc.data().uid === auth.currentUser.uid) {
                     setStoreInfo(doc.data())
                 }
-                if (doc.data().image === null) {
-                    setImage(defaultImage);
-                } else {
-                    setImage(doc.data().image);
-                }
             })
         })
         .catch(err=> console.log(err))
     }, [pageLoader])
 
-// // variables 
-//     let imageUrl;
-    
-// // sets default image to store profile page
-//     if (storeInfo.image === null) {
-//         imageUrl = defaultImage;
-//     } else {
-//         imageUrl = storeInfo.image;
-//     }
 
 // logout function
     let logout =()=> {
@@ -67,7 +63,7 @@ export default function StoreProfilePage(props) {
                     let name = doc.data().name;
                     let description = doc.data().description;
                     let location = doc.data().location;
-                    let image = doc.data().image;
+                    let tempImage = doc.data().image;
                     if (eName) {
                         name = eName;
                         console.log(eName);
@@ -79,14 +75,14 @@ export default function StoreProfilePage(props) {
                         location = eLocation
                     } 
                     if (eImage !== "") {
-                        image = fileUrl;
+                        tempImage = fileUrl
                     }
                     let storeInfo = db.collection("stores").doc(`${doc.id}`)
                     storeInfo.update({
                         name: name,
                         description: description,
                         location: location,
-                        image: image,
+                        image: tempImage,
                     })
                 }
                 setPageLoad(!pageLoader);
@@ -119,16 +115,16 @@ export default function StoreProfilePage(props) {
         }
     }
 
-    if (image === null) {
+    if (storeInfo.image === null) {
         return <p>loading page...</p>
     } else {
-        // console.log("re-render")
+        console.log(defaultImage)
         return (
             <div className="store-profile">
                 <Header userInfo={storeInfo}/>
                 <section className="profile__store-info">
                     <div className="profile__hero">
-                        <img className="store-info__img"src={image} alt="store profile"/>
+                        <img className="store-info__img"src={imageUrl} alt="store profile"/>
                         <p className="profile__hero__text">{storeInfo.name}</p>
                     </div>
                     <section className="store-info__content">
