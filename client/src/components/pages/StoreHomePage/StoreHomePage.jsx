@@ -5,29 +5,22 @@ import './StoreHomePage.scss';
 import Chart from 'chart.js';
 import {db, auth} from '../../../firebase';
 
-function timeCalculator(seconds) {
-    console.log(seconds)
-    // if (seconds) {
-        // let nanosec = nano;
-        // console.log("nano", nanosec);
-        // let sec = seconds;
-        // console.log("sec",sec);
-        // let min = seconds/60;
-        // console.log("min", min);
-        // let hours = min/60;
-        // console.log("hours", hours);
-        // let days = hours/24;
-        // console.log("days", days);
-    // }
-}
-
-
 function StoreHomePage() {
     let [data, setData] = useState([]);
     let [date, setDate] = useState(new Date());
     let [prevDate, setPrevDate] = useState(null);
 
     useEffect(()=> {
+        db.collection('stores')
+        .get()
+        .then(snapshot=> {
+            snapshot.forEach(doc=> {
+                if (doc.data().uid === auth.currentUser.uid) {
+                    
+                }
+            })
+        })
+
         db.collection('stores')
         .get()
         .then(snapshot=> {
