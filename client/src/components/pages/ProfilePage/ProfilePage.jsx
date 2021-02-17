@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react';
 import './ProfilePage.scss';
 import Footer from '../../Footer/Footer';
 import profile from '../../../assets/icons/profile.svg';
-import edit from '../../../assets/icons/edit.svg';
+import edit from '../../../assets/icons/edit-white.svg';
 import {db, auth} from '../../../firebase';
 import EditModal from '../../EditModal/EditModal';
 import firebase from 'firebase';
-import Header from '../../Header/Header';
+// import Header from '../../Header/Header';
+import emailIcon from '../../../assets/icons/email.svg';
+import locationIcon from '../../../assets/icons/location.svg';
 
 export default function ProfilePage(props) {
     const [userInfo, setUserInfo] = useState({});
@@ -107,21 +109,40 @@ export default function ProfilePage(props) {
     } else {
         return (
             <div className="profile">
-    
-                <div className="profile__header">
-                <Header fileUrl={fileUrl} userInfo={userInfo}/>
-                </div>
-                <div className="profile__info">
-                    <div className="profile__info__head">
-                        <img className="profile__info__head__edit"src={edit} onClick={showEdit} alt="edit"/>
+                <section className="profile-hero">
+                    <img src={`${imageUrl}`} className="profile-hero__background" alt="user profile"/>
+                    <div className="profile-hero__head">
+                        <p className="profile-hero__head__title">VIEW PROFILE</p>
+                        <img className="profile-hero__head__edit"src={edit} onClick={showEdit} alt="edit"/>
                     </div>
-                    <img className="profile__info__img"src={imageUrl} alt="user profile"/>
-                    <p className="profile__info__name">{userInfo.name}</p>
-                    <p className="profile__info__field">email: <span className="profile__info__field--value">{userInfo.username}</span> </p>
-                    <p className="profile__info__field">location: <span className="profile__info__field--value">{userInfo.location}</span> </p>
-                    <p className="profile__info__field">Collecting from <span className="profile__info__field--value">{storeCount}</span> boba stores</p>
+                    <img src={`${imageUrl}`} className="profile-hero__img" alt="user profile"/>
+                    <p className="profile-hero__name">{userInfo.name}</p>
+                    <p className="profile-info__field">Collecting from {storeCount} boba stores</p>
+                </section>
+
+                <section className="profile-stats">
+                    <div className="profile-stats__container">
+                        <p className="profile-stats__text">4 Stores</p>
+                        {/* <p className="profile-stats__text">Collecting From</p> */}
+                    </div>
+                    <div className="profile-stats__container profile-stats__container--idk">
+                        <p className="profile-stats__text">idk yet</p>
+                    </div>
+
+
+                </section>
+
+                <section className="profile-info"> 
+                    <div className="profile-info__card">
+                        <img src={`${emailIcon}`} className="profile-info__icon"/>
+                        <p className="profile-info__field">{userInfo.username}</p>
+                    </div>
+                    <div className="profile-info__card">
+                        <img src={`${locationIcon}`} className="profile-info__icon"/>
+                        <p className="profile-info__field">{userInfo.location}</p>
+                    </div>
                     <button className="profile__header__logout" onClick={logout}>LOGOUT</button>
-                </div>
+                </section>
                 
                 <EditModal show={show} userInfo={userInfo} updateUserInfo={updateUserInfo} fileUrl={fileUrl} hideEdit={hideEdit} onPhotoChange={onPhotoChange}/>
                 <Footer/>

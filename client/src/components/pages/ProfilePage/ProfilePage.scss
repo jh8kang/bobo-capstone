@@ -6,62 +6,107 @@
     align-items: center;
     height: 100%;
     &__header {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
+
         &__logout {
             font-size: 12px;
-            margin-top: 70px;
+            // margin-top: 70px;
             border: none;
             background: none;
         }
+    }   
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    border-radius: 5px;
+    height: 100vh;
+    padding: 3% 40px 3% 40px;
+    &__card {
+        width: 100%;
+        border-bottom: 1px solid $grey;
+        padding: 10px 0px 10px 0px;
+        display: flex;
+        align-items: center;
     }
-    &__info {
+    &__field {
+        width: 200px;
+    }
+    &__icon {
+        width: 30px;
+        margin-right: 20px;
+    }
+}
+
+.profile-hero {
+    background-color: $main;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    &__background {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        position: absolute;
+        opacity: 0.1;
+        z-index: 0;
+    }
+    &__img {
+        border: 1px solid white;
+        border-radius: 60%;
+        width: 100px;
+        height: 100px;
+        margin-top: 20%;
+        object-fit: cover;
+        z-index: 1;
+    }
+    &__name {
+        margin-top: 10px;
+        color: white;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+    }
+    &__head {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        &__title {
+            margin-top: 20px;
+            color: white;
+        }
+        &__edit {
+            width: 20px;
+            height: 20px;
+            align-self: flex-end;
+            margin: 5px;
+            position: absolute;
+            right: 10px;
+        }
+    }
+
+}
+
+.profile-stats {
+    width: 100%;
+    display: flex;
+    &__container {
+        width: 50%;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        width: 100%;
-        border-radius: 5px;
-        height: 100vh;
-        padding: 3%;
-        padding-top: 70px;
-        background-color: #d8e1e9;
-        &__head {
-            display: flex;
-            width: 100%;
-            justify-content: flex-end;
-            &__edit {
-                width: 20px;
-                height: 20px;
-                align-self: flex-end;
-                margin: 5px;
-            }
-            &__title {
-                align-self: flex-start;
-                font-weight: normal;
-                font-size: 1.5rem;
-                color: $dark-main;
-                background-color: white;
-            }
+        background-color: $blue2;
+        height: 50px;
+        &--idk {
+            background-color: $bright-blue;
         }
-        &__img {
-            border: 1px solid white;
-            border-radius: 10px;
-            width: 150px;
-            height: 150px;
-            margin-top: 20%;
-            object-fit: cover;
-        }
-        &__name {
-            margin-bottom: 50px;
-            margin-top: 10px;
-        }
-        &__field {
-            margin-bottom: 10px;
-            width: 200px;
-            &--value {
-                color: #3168b0;
-            }
-        }
-    }   
+    }
+    &__text {
+        color: white;
+    }
 }
