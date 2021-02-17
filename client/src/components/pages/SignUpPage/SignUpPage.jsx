@@ -27,6 +27,7 @@ class SignUpPage extends Component {
                 stores: [],
                 type: "collector",
                 image: null,
+                bbtcount: 0,
             })
         })
         .catch(err=>{

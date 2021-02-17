@@ -88,9 +88,12 @@ export default function PointManagePage() {
                 if (doc.data().uid === userInfo.uid) {
                     let data = doc.data().stores
                     let store = data.find(store=> store.id === storeId)
-                    store.points +=1
+                    store.points +=1;
+                    let bobaCount = doc.data().bbtcount;
+                    bobaCount +=1;
                     db.collection("usertype").doc(`${doc.id}`).update({
-                        stores: data
+                        stores: data,
+                        bbtcount: bobaCount,
                     })
                 }
             })
