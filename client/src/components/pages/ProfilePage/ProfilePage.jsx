@@ -117,16 +117,16 @@ export default function ProfilePage(props) {
                     </div>
                     <img src={`${imageUrl}`} className="profile-hero__img" alt="user profile"/>
                     <p className="profile-hero__name">{userInfo.name}</p>
-                    <p className="profile-info__field">Collecting from {storeCount} boba stores</p>
                 </section>
 
                 <section className="profile-stats">
                     <div className="profile-stats__container">
-                        <p className="profile-stats__text">4 Stores</p>
-                        {/* <p className="profile-stats__text">Collecting From</p> */}
+                        <p className="profile-stats__text">{storeCount}</p>
+                        <p className="profile-stats__text">Stores</p>
                     </div>
                     <div className="profile-stats__container profile-stats__container--idk">
-                        <p className="profile-stats__text">idk yet</p>
+                        <p className="profile-stats__text">{userInfo.bbtcount}</p>
+                        <p className="profile-stats__text">Boba count</p>
                     </div>
 
 
