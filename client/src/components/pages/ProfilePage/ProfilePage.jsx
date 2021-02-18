@@ -41,6 +41,11 @@ export default function ProfilePage(props) {
         .catch(err=> console.log(err))
     }, [pageLoader, fileUrl])
 
+// Reloads profile page component
+    let reloadPage = () => {
+        setPageLoad(!pageLoader);
+    }
+
 // updates user information in firestore when you click okay on edit modal
     let updateUserInfo = (e) => {
         e.preventDefault();
@@ -68,7 +73,7 @@ export default function ProfilePage(props) {
                         image: image,
                     })
                 }
-                setPageLoad(!pageLoader);
+                reloadPage()
                 hideEdit()
                 // document.getElementById('signup-form').reset();
                 
@@ -144,7 +149,7 @@ export default function ProfilePage(props) {
                     <button className="profile__header__logout" onClick={logout}>LOGOUT</button>
                 </section>
                 
-                <EditModal show={show} userInfo={userInfo} updateUserInfo={updateUserInfo} fileUrl={fileUrl} hideEdit={hideEdit} onPhotoChange={onPhotoChange}/>
+                <EditModal show={show} userInfo={userInfo} updateUserInfo={updateUserInfo} fileUrl={fileUrl} hideEdit={hideEdit} onPhotoChange={onPhotoChange} reloadPage={reloadPage}/>
                 <Footer/>
             </div>
         )
