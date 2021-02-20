@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import profileImage from '../../assets/icons/profile.svg';
 import './PointAdderModal.scss';
 import yellowStar from '../../assets/icons/point-yellow.svg';
-import whiteStar from '../../assets/icons/point-white2.svg';
+import whiteStar from '../../assets/icons/point-white.svg';
 import {v4 as uuid} from 'uuid';
 import {db, auth} from '../../firebase';
 
