@@ -26,6 +26,16 @@
         padding: 5px 10px;
 
     }
+    &__button-container {
+        display: flex;
+        justify-content: center;
+    }
+    &__button {
+        color: $main;
+        background-color: transparent;
+        border: none;
+
+    }
 }
 
 .images {

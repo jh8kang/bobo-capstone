@@ -57,6 +57,7 @@ export default function ProfilePage(props) {
                     let name = doc.data().name;
                     let location = doc.data().location;
                     let image = doc.data().image;
+                    console.log(fileUrl)
                     if (e.target.name.value) {
                         name = e.target.name.value;
                     }
@@ -66,6 +67,7 @@ export default function ProfilePage(props) {
                     if (e.target.file.value) {
                         image = fileUrl;
                     }
+                    console.log(fileUrl)
                     let userInfo = db.collection("usertype").doc(`${doc.id}`)
                     userInfo.update({
                         name: name,
@@ -90,6 +92,14 @@ export default function ProfilePage(props) {
             var fileRef = storageRef.child(file.name);
             await fileRef.put(file)
             setFileUrl(await fileRef.getDownloadURL());
+        }
+    }
+
+// on Image Search click photo change 
+    let onPhotoChangeSearch = (e) => {
+        if (e.target.id) {
+            setFileUrl(e.target.id);
+            console.log("hi")
         }
     }
 
@@ -149,7 +159,7 @@ export default function ProfilePage(props) {
                     <button className="profile__header__logout" onClick={logout}>LOGOUT</button>
                 </section>
                 
-                <EditModal show={show} userInfo={userInfo} updateUserInfo={updateUserInfo} fileUrl={fileUrl} hideEdit={hideEdit} onPhotoChange={onPhotoChange} reloadPage={reloadPage}/>
+                <EditModal show={show} userInfo={userInfo} updateUserInfo={updateUserInfo} fileUrl={fileUrl} hideEdit={hideEdit} onPhotoChange={onPhotoChange} reloadPage={reloadPage} onPhotoChangeSearch={onPhotoChangeSearch}/>
                 <Footer/>
             </div>
         )
