@@ -50,7 +50,7 @@ export default function PointAdderModal({show, userInfo, hideUserProfile, curren
     .catch(err=> console.log(err))
 
 // checks if client is registerd to store
-    if (validUser == undefined) {
+    if (typeof validUser == null) {
         return (
             <div className={showHideClassName}>
                 <section className="modal-main">

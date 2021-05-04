@@ -115,7 +115,7 @@ export default function StoreProfilePage(props) {
         }
     }
 
-    if (storeInfo.image === null) {
+    if (storeInfo === null) {
         return <p>loading page...</p>
     } else {
         console.log(defaultImage)
